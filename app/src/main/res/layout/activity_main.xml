@@ -37,7 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ivBtnCode"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintWidth_percent="0.5"
                 android:layout_marginEnd="12dp"
@@ -47,6 +47,16 @@
                 android:text="KOTLIN"
                 android:textColor="@color/white"
                 app:drawableEndCompat="@drawable/ic_arrow_down" />
+
+            <ImageView
+                android:id="@+id/ivBtnCode"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_curly_brackets"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

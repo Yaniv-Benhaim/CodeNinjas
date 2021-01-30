@@ -40,4 +40,9 @@
             android:id="@+id/action_chooseWeaponFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/codePlayGroundFragment"
+        android:name="tech.gamedev.codeninjas.ui.CodePlayGroundFragment"
+        android:label="fragment_code_play_ground"
+        tools:layout="@layout/fragment_code_play_ground" />
 </navigation>
