@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CodeNinjas</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="codeninjas">CodeNinjas</string>
+    <string name="choose_your_weapon">Choose your weapon</string>
+    <string name="btn_continue">CONTINUE</string>
+    <string name="choose">CHOOSE</string>
+</resources>
