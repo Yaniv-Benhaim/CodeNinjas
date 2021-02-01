@@ -43,10 +43,10 @@ class FeaturedItemsAdapter (val glide: RequestManager) : RecyclerView.Adapter<Fe
 
         holder.initialize()
         when(position) {
-            0 -> glide.load(R.drawable.ninja_one).into(holder.itemView.ivFeaturedBg)
-            1 -> glide.load(R.drawable.ninja2).into(holder.itemView.ivFeaturedBg)
-            2 -> glide.load(R.drawable.ninja3).into(holder.itemView.ivFeaturedBg)
-            3 -> glide.load(R.drawable.ninja4).into(holder.itemView.ivFeaturedBg)
+            0 -> glide.load(R.drawable.img_ninja_battle).into(holder.itemView.ivFeaturedBg)
+            1 -> glide.load(R.drawable.img_watch_phone).into(holder.itemView.ivFeaturedBg)
+            2 -> glide.load(R.drawable.img_ask_questions).into(holder.itemView.ivFeaturedBg)
+            3 -> glide.load(R.drawable.img_rating).into(holder.itemView.ivFeaturedBg)
 
         }
 

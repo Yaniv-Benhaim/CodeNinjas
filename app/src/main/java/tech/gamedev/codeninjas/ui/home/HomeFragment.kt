@@ -1,5 +1,6 @@
 package tech.gamedev.codeninjas.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,10 +13,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.RequestManager
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -43,12 +46,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         subscribeToObservers()
         setupFeaturedVP()
         setupIndicator()
+        btnGoToInterViewQuestions.setOnClickListener { navigateToQueAndAns() }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun subscribeToObservers() {
         _mainViewModel.weapon.observe(viewLifecycleOwner) {
-            setToast(it)
+            binding.tvBtnGoToInterviewQuestions.text = "$it interview questions"
         }
+    }
+
+    private fun navigateToQueAndAns() {
+        val action = HomeFragmentDirections.actionGlobalToInterviewQuestionsFragment(_mainViewModel.weapon.value!!)
+        findNavController().navigate(action)
     }
 
     private fun setupFeaturedVP() = binding.vpFeaturedItems.apply {

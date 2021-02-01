@@ -6,22 +6,28 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/homeFragment"
         android:name="tech.gamedev.codeninjas.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="tech.gamedev.codeninjas.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/learnFragment"
+        android:name="tech.gamedev.codeninjas.ui.learn.LearnFragment"
+        android:label="@string/learn"
+        tools:layout="@layout/fragment_learn" >
+        <action
+            android:id="@+id/action_learnFragment_to_lessonDetailFragment"
+            app:destination="@id/lessonDetailFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="tech.gamedev.codeninjas.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/discussFragment"
+        android:name="tech.gamedev.codeninjas.ui.discuss.DiscussFragment"
+        android:label="@string/discuss"
+        tools:layout="@layout/fragment_discuss" />
     <fragment
         android:id="@+id/splashFragment"
         android:name="tech.gamedev.codeninjas.ui.splash.SplashFragment"
@@ -38,11 +44,56 @@
         tools:layout="@layout/fragment_choose_weapon" >
         <action
             android:id="@+id/action_chooseWeaponFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/codePlayGroundFragment"
-        android:name="tech.gamedev.codeninjas.ui.CodePlayGroundFragment"
+        android:name="tech.gamedev.codeninjas.ui.codeplayground.CodePlayGroundFragment"
         android:label="fragment_code_play_ground"
         tools:layout="@layout/fragment_code_play_ground" />
+    <fragment
+        android:id="@+id/battleFragment"
+        android:name="tech.gamedev.codeninjas.ui.battle.BattleFragment"
+        android:label="fragment_battle"
+        tools:layout="@layout/fragment_battle" />
+
+
+    <fragment
+        android:id="@+id/interviewQuestionsFragment"
+        android:name="tech.gamedev.codeninjas.ui.detailscreens.InterviewQuestionsFragment"
+        android:label="fragment_interview_questions"
+        tools:layout="@layout/fragment_interview_questions" >
+        <argument
+            android:name="weapon"
+            app:argType="string" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_to_code_playground"
+        app:destination="@id/codePlayGroundFragment" />
+
+    <action
+        android:id="@+id/action_global_to_interview_questions_fragment"
+        app:destination="@id/interviewQuestionsFragment" />
+    <fragment
+        android:id="@+id/lessonDetailFragment"
+        android:name="tech.gamedev.codeninjas.ui.detailscreens.LessonDetailFragment"
+        android:label="fragment_lesson_detail"
+        tools:layout="@layout/fragment_lesson_detail" >
+        <argument
+            android:name="lesson"
+            app:argType="tech.gamedev.codeninjas.data.models.LessonAndQuestion" />
+        <action
+            android:id="@+id/action_lessonDetailFragment_to_questionDetailFragment"
+            app:destination="@id/questionDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionDetailFragment"
+        android:name="tech.gamedev.codeninjas.ui.detailscreens.QuestionDetailFragment"
+        android:label="fragment_question_detail"
+        tools:layout="@layout/fragment_question_detail" >
+        <argument
+            android:name="question"
+            app:argType="tech.gamedev.codeninjas.data.models.LessonAndQuestion" />
+    </fragment>
 </navigation>

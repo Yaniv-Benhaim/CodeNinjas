@@ -10,6 +10,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import tech.gamedev.codeninjas.R
+import tech.gamedev.codeninjas.repo.CreateNewLessonsRepo
+import tech.gamedev.codeninjas.repo.LessonRepository
+import tech.gamedev.codeninjas.repo.LoginRepository
 import javax.inject.Singleton
 
 @Module
@@ -26,4 +29,16 @@ object AppModule {
             .error(R.drawable.ic_image)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
     )
+
+    @Singleton
+    @Provides
+    fun provideLoginRepository() = LoginRepository()
+
+    @Singleton
+    @Provides
+    fun provideNewLessonRepository() = CreateNewLessonsRepo()
+
+    @Singleton
+    @Provides
+    fun provideLessonRepository() = LessonRepository()
 }

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.ChooseWeaponAdapter
 import tech.gamedev.codeninjas.databinding.FragmentChooseWeaponBinding
+import tech.gamedev.codeninjas.ui.learn.LearnViewModel
 import tech.gamedev.codeninjas.utils.getWeapons
 import tech.gamedev.codeninjas.viewmodels.MainViewModel
 
@@ -20,6 +21,7 @@ class ChooseWeaponFragment : Fragment(R.layout.fragment_choose_weapon), ChooseWe
     lateinit var binding: FragmentChooseWeaponBinding
     lateinit var chooseWeaponAdapter: ChooseWeaponAdapter
     private val _mainViewModel: MainViewModel by activityViewModels()
+    private val _learnViewModel: LearnViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,6 +42,8 @@ class ChooseWeaponFragment : Fragment(R.layout.fragment_choose_weapon), ChooseWe
     private fun choose() {
         val curItem = binding.vpChooseYourWeapon.currentItem
         _mainViewModel.setWeapon(getWeapons()[curItem])
+        _learnViewModel.setWeapon(getWeapons()[curItem])
+        Log.d("WEAPON",getWeapons()[curItem])
         findNavController().navigate(R.id.action_chooseWeaponFragment_to_navigation_home)
     }
 
