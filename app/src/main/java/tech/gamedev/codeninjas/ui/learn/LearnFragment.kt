@@ -24,6 +24,8 @@ import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.LessonsAdapter
 import tech.gamedev.codeninjas.data.models.LessonAndQuestion
 import tech.gamedev.codeninjas.databinding.FragmentLearnBinding
+import tech.gamedev.codeninjas.utils.setBattleQuestions
+import tech.gamedev.codeninjas.utils.setDummyUsers
 
 
 @AndroidEntryPoint
@@ -47,6 +49,9 @@ class LearnFragment : Fragment(R.layout.fragment_learn), LessonsAdapter.LessonCl
         db = FirebaseFirestore.getInstance()
         subscribeToObservers()
         setupLessonsRv()
+        _learnViewModel.createNewLesson()
+
+
 
 
 

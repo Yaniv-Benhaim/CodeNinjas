@@ -10,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import tech.gamedev.codeninjas.R
+import tech.gamedev.codeninjas.repo.BattleRepo
 import tech.gamedev.codeninjas.repo.CreateNewLessonsRepo
 import tech.gamedev.codeninjas.repo.LessonRepository
 import tech.gamedev.codeninjas.repo.LoginRepository
@@ -25,8 +26,8 @@ object AppModule {
         @ApplicationContext context: Context
     ) = Glide.with(context).setDefaultRequestOptions(
         RequestOptions()
-            .placeholder(R.drawable.ic_image)
-            .error(R.drawable.ic_image)
+            .placeholder(R.drawable.img_example_user)
+            .error(R.drawable.img_example_user)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
     )
 
@@ -41,4 +42,8 @@ object AppModule {
     @Singleton
     @Provides
     fun provideLessonRepository() = LessonRepository()
+
+    @Singleton
+    @Provides
+    fun provideBattleRepository() = BattleRepo()
 }

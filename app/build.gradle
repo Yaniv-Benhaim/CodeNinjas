@@ -101,4 +101,8 @@ dependencies {
 
     //Level progressbar
     implementation "ir.alirezaiyan:levelprogressbar:1.0.2"
+
+    //Percentage Horizontal progress bar
+    implementation 'com.params.progressview:step-progress:1.0.2'
+
 }

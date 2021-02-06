@@ -19,5 +19,9 @@ data class LessonAndQuestion(
     val answerB: String = "",
     val answerC: String = "",
     val answerD: String = "",
-    val experienceGained: Long = 10
+    val experienceGained: Long = 10,
+    val summary: String = "",
+    val hintStart: String = "",
+    val hintEnd: String = "",
+    val imgUrlTwo: String = ""
 ) : Parcelable

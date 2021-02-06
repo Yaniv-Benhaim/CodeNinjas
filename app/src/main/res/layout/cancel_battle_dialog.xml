@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/base_dialog_bg"
+    >
+
+
+
+        <ImageView
+            android:id="@+id/btnCloseDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="12dp"
+            android:src="@drawable/ic_close"/>
+
+    <TextView
+        android:id="@+id/tvGiveUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="48dp"
+        android:textSize="16sp"
+        android:text="@string/are_you_sure_you_wan_t_to_give_up"
+        android:gravity="center"
+        android:fontFamily="@font/ninja_lazer"
+        android:textColor="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnNo"
+        android:layout_marginTop="56dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.5"
+        android:text="No"
+        android:background="@color/white"
+        android:textStyle="bold"
+        style="?attr/materialButtonOutlinedStyle"
+        app:layout_constraintTop_toBottomOf="@id/tvGiveUp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/btnYes"
+            android:layout_width="0dp"
+            android:layout_marginTop="56dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            android:textStyle="bold"
+            android:text="Yes"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/tvGiveUp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnNo"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,6 +43,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
+        getQuestionAndUserData()
         subscribeToObservers()
         setupFeaturedVP()
         setupIndicator()
@@ -90,6 +91,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun repeatSwitchItems() {
         switchFeaturedItem()
+    }
+
+    private fun getQuestionAndUserData() {
+        //GET DUMMY USERS FOR BATTLE SYSTEM
+        _mainViewModel.getDummyUsersForBattle()
+        _mainViewModel.getJavaQuestions()
+        Log.d("BATTLE", "CALLED GET DUMMY USERS FUNCTION")
     }
 
 

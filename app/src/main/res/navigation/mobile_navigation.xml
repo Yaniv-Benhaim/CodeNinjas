@@ -55,7 +55,11 @@
         android:id="@+id/battleFragment"
         android:name="tech.gamedev.codeninjas.ui.battle.BattleFragment"
         android:label="fragment_battle"
-        tools:layout="@layout/fragment_battle" />
+        tools:layout="@layout/fragment_battle" >
+        <action
+            android:id="@+id/action_battleFragment_to_battleCountDownFragment"
+            app:destination="@id/battleCountDownFragment" />
+    </fragment>
 
 
     <fragment
@@ -95,5 +99,53 @@
         <argument
             android:name="question"
             app:argType="tech.gamedev.codeninjas.data.models.LessonAndQuestion" />
+    </fragment>
+    <fragment
+        android:id="@+id/battleCountDownFragment"
+        android:name="tech.gamedev.codeninjas.ui.battle.BattleCountDownFragment"
+        android:label="fragment_battle_count_down"
+        tools:layout="@layout/fragment_battle_count_down" >
+        <argument
+            android:name="user1"
+            app:argType="tech.gamedev.codeninjas.data.models.User" />
+        <argument
+            android:name="opponent"
+            app:argType="tech.gamedev.codeninjas.data.models.User" />
+        <action
+            android:id="@+id/action_battleCountDownFragment_to_battleStartedFragment"
+            app:destination="@id/battleStartedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/battleStartedFragment"
+        android:name="tech.gamedev.codeninjas.ui.battle.BattleStartedFragment"
+        android:label="fragment_battle_started"
+        tools:layout="@layout/fragment_battle_started" >
+        <argument
+            android:name="user"
+            app:argType="tech.gamedev.codeninjas.data.models.User" />
+        <argument android:name="opponent"
+            app:argType="tech.gamedev.codeninjas.data.models.User" />
+        <action
+            android:id="@+id/action_battleStartedFragment_to_finishedBattleFragment"
+            app:destination="@id/finishedBattleFragment" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_to_battleFragment"
+        app:destination="@id/battleFragment" />
+    <fragment
+        android:id="@+id/finishedBattleFragment"
+        android:name="tech.gamedev.codeninjas.ui.battle.FinishedBattleFragment"
+        android:label="fragment_finished_battle"
+        tools:layout="@layout/fragment_finished_battle" >
+        <argument
+            android:name="score"
+            app:argType="integer" />
+        <argument
+            android:name="user"
+            app:argType="tech.gamedev.codeninjas.data.models.User" />
+        <argument
+            android:name="opponent"
+            app:argType="tech.gamedev.codeninjas.data.models.User" />
     </fragment>
 </navigation>

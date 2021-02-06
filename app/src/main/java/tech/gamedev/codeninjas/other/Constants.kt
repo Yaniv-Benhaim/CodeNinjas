@@ -31,7 +31,10 @@ object Constants {
     const val LEVEL_FOUR = "Ninja"
     const val LEVEL_FIVE = "Master Samurai"
 
-    val JAVA_LESSONS_REF = FirebaseFirestore.getInstance().collection("lessons").document("java").collection("lessons")
+    //BATTLE
+    const val FIGHT = "FIGHT"
+
+
 
 
 }

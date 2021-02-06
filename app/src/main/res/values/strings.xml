@@ -13,4 +13,12 @@
     <string name="code">Code</string>
     <string name="discuss">Discuss</string>
     <string name="change_weapon">Change weapon</string>
+    <string name="challenge">Challenge</string>
+    <string name="level">Level:</string>
+    <string name="battles_won">Battles won:</string>
+    <string name="battles_lost">Battles lost:</string>
+    <string name="check_answer">check answer</string>
+    <string name="are_you_sure_you_wan_t_to_give_up">Are you sure you wan\'t to give up ?</string>
+    <string name="battle_summary">Battle summary</string>
+    <string name="score">Score</string>
 </resources>

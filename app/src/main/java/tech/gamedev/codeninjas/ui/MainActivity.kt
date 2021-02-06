@@ -1,6 +1,7 @@
 package tech.gamedev.codeninjas.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,6 +18,7 @@ import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.ChangeWeaponAdapter
 import tech.gamedev.codeninjas.databinding.ActivityMainBinding
 import tech.gamedev.codeninjas.ui.learn.LearnViewModel
+import tech.gamedev.codeninjas.utils.setBattleQuestions
 import tech.gamedev.codeninjas.viewmodels.MainViewModel
 import javax.inject.Inject
 
@@ -62,7 +64,9 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
         subscribeToObservers()
         setupChooseNewWeaponRV()
         binding.tvCurrentWeapon.setOnClickListener { openWeaponSelection() }
-        binding.ivBtnCode.setOnClickListener { nav_host_fragment.findNavController().navigate(R.id.action_global_to_code_playground) }
+        binding.ivBtnCode.setOnClickListener { nav_host_fragment.findNavController().navigate(R.id.action_global_to_code_playground)}
+
+
 
 
     }
@@ -70,6 +74,11 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
     private fun subscribeToObservers() {
         mainViewModel.weapon.observe(this) {
             binding.tvCurrentWeapon.text = it
+        }
+        mainViewModel.javaQuestions.observe(this) {
+            for (question in it) {
+                Log.d("BATTLE", question.question)
+            }
         }
     }
 
