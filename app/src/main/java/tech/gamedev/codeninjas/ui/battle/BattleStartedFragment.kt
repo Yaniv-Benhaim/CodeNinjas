@@ -3,23 +3,18 @@ package tech.gamedev.codeninjas.ui.battle
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.cancel_battle_dialog.*
 import kotlinx.android.synthetic.main.fragment_battle_started.*
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.data.models.BattleQuestion
 import tech.gamedev.codeninjas.databinding.FragmentBattleStartedBinding
-import tech.gamedev.codeninjas.other.Constants
-import tech.gamedev.codeninjas.ui.GiveUpDialog
-import tech.gamedev.codeninjas.utils.setToast
+import tech.gamedev.codeninjas.ui.dialogs.GiveUpDialog
 import tech.gamedev.codeninjas.viewmodels.MainViewModel
 import javax.inject.Inject
 

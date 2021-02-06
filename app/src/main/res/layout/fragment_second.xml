@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.onboarding.screens.SecondFragment">
+
+
+    <TextView
+        android:id="@+id/tvChallenge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:textColor="@color/orange"
+        android:text="@string/battle"
+        android:fontFamily="@font/ninja_lazer"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:layout_margin="12dp"
+        android:textColor="@color/orange"
+        android:text="@string/other_programmers"
+        android:fontFamily="@font/ninjagarden3d"
+        app:layout_constraintTop_toBottomOf="@id/tvChallenge"
+        android:textSize="30sp"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_margin="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_rawRes="@raw/fighting_lottie"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
+    <TextView
+        app:layout_constraintBottom_toTopOf="@id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:gravity="center"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/assasin"
+        android:text="@string/top_ninjas_win_real_prices"
+        android:textSize="26sp"/>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:layout_margin="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="?attr/materialButtonOutlinedStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/orange"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,6 @@
     <string name="btn_continue">CONTINUE</string>
     <string name="choose">CHOOSE</string>
     <string name="learn">Learn</string>
-    <string name="battle">Battle</string>
     <string name="code">Code</string>
     <string name="discuss">Discuss</string>
     <string name="change_weapon">Change weapon</string>
@@ -21,4 +20,18 @@
     <string name="are_you_sure_you_wan_t_to_give_up">Are you sure you wan\'t to give up ?</string>
     <string name="battle_summary">Battle summary</string>
     <string name="score">Score</string>
+    <string name="question_of_the_day">Question of the day</string>
+    <string name="top_scores">Top scores</string>
+    <string name="welcome">Welcome</string>
+    <string name="battle">Battle</string>
+    <string name="other_programmers">Other programmers</string>
+    <string name="top_ninjas_win_real_prices">Top Ninjas win real prices</string>
+    <string name="finish">finish</string>
+    <string name="start">START</string>
+    <string name="learning_now">LEARNING NOW</string>
+    <string name="and_become_a_developer">And become a developer</string>
+    <string name="codeninja">CodeNinja</string>
+    <string name="programmer">Programmer</string>
+    <string name="to_the_best_place_to_learn_programming">To the best place to learn programming</string>
+    <string name="next">next</string>
 </resources>

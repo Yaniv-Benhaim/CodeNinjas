@@ -105,4 +105,7 @@ dependencies {
     //Percentage Horizontal progress bar
     implementation 'com.params.progressview:step-progress:1.0.2'
 
+    //APP RATE
+    implementation 'com.suddenh4x.ratingdialog:awesome-app-rating:2.2.1'
+
 }

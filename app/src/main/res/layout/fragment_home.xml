@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ui.home.HomeFragment">
 
     <ScrollView
@@ -16,6 +17,7 @@
             android:layout_height="wrap_content">
 
             <androidx.viewpager2.widget.ViewPager2
+                android:layout_marginTop="24dp"
                 android:id="@+id/vpFeaturedItems"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
@@ -25,11 +27,11 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/indicator"
-                android:layout_marginTop="12dp"
                 app:tabBackground="@drawable/indicator_selecter"
                 app:tabIndicatorHeight="0dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
+                android:background="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,20 +46,109 @@
                 android:id="@+id/btnGoToInterViewQuestions"
                 android:layout_width="match_parent"
                 app:cardCornerRadius="15dp"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="@color/orange"
                 android:layout_margin="24dp"
                 android:background="@color/black"
                 android:layout_height="60dp"
                 app:layout_constraintTop_toBottomOf="@id/indicator">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_margin="5dp"
+                android:background="@color/black"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/indicator">
+
+
                 <TextView
                     android:id="@+id/tvBtnGoToInterviewQuestions"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:textSize="16sp"
                     android:fontFamily="@font/ninja_lazer"
                     android:textColor="@color/orange"
                     />
+
             </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvQuestionOfTheDayTitle"
+                android:layout_width="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@id/btnGoToInterViewQuestions"
+                android:text="@string/question_of_the_day"
+                android:fontFamily="@font/ninja_lazer"
+                android:textColor="@color/orange"
+                app:layout_constraintBottom_toTopOf="@id/btnGoToQuestionOfTheDay"
+                />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnGoToQuestionOfTheDay"
+                android:layout_width="match_parent"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="@color/orange"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/black"
+                android:layout_height="190dp"
+                app:layout_constraintTop_toBottomOf="@id/tvQuestionOfTheDayTitle">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvQuestionOfTheDay"
+                        android:layout_width="match_parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:text="What will be the output"
+                        android:fontFamily="@font/ninja_lazer"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toTopOf="@id/cvQuestionContainer"
+                        />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvQuestionContainer"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="match_parent"
+                    app:cardCornerRadius="15dp"
+                    app:cardBackgroundColor="@color/black"
+                    android:layout_margin="5dp"
+                    android:background="@color/black"
+                    android:layout_height="150dp"
+                    >
+
+
+
+                    <ImageView
+                        android:visibility="visible"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/question6_example"/>
+
+                </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
 
 
 

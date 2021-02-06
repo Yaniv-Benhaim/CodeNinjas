@@ -6,12 +6,15 @@ import android.view.View
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.RequestManager
+import com.suddenh4x.ratingdialog.AppRating
+import com.suddenh4x.ratingdialog.preferences.RatingThreshold
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import tech.gamedev.codeninjas.R
@@ -36,6 +39,28 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (savedInstanceState == null) {
+            AppRating.Builder(this)
+                .setMinimumLaunchTimes(5)
+                .setMinimumDays(2)
+                .setMinimumLaunchTimesToShowAgain(3)
+                .setMinimumDaysToShowAgain(3)
+                .setRatingThreshold(RatingThreshold.FOUR)
+                .setIconDrawable(ContextCompat.getDrawable(this,R.drawable.ic_ninja))
+                .showIfMeetsConditions()
+        }
+
+        AppRating.Builder(this)
+            .setMinimumLaunchTimes(5)
+            .setMinimumDays(2)
+            .setMinimumLaunchTimesToShowAgain(3)
+            .setMinimumDaysToShowAgain(3)
+            .setRatingThreshold(RatingThreshold.FOUR)
+            .setIconDrawable(ContextCompat.getDrawable(this,R.drawable.ic_ninja))
+            .showIfMeetsConditions()
+
+
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
@@ -47,12 +72,12 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
                 R.id.learnFragment,
                 R.id.discussFragment,
                 R.id.battleFragment,
-                R.id.codePlayGroundFragment,
-                R.id.interviewQuestionsFragment -> {
+                R.id.codePlayGroundFragment -> {
                     navView.isVisible = true
                     binding.cvToolBar.isVisible = true
                     supportActionBar?.show()
                 }
+                R.id.interviewQuestionsFragment -> navView.isVisible = false
                 else -> {
                     navView.isVisible = false
                     supportActionBar?.hide()

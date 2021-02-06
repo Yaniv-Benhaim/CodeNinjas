@@ -20,6 +20,7 @@ import tech.gamedev.codeninjas.ui.splash.LoginViewModel
 import tech.gamedev.codeninjas.utils.setToast
 import tech.gamedev.codeninjas.viewmodels.MainViewModel
 import javax.inject.Inject
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class BattleFragment : Fragment(R.layout.fragment_battle), UserBattleAdapter.OnUserClicked {
@@ -39,11 +40,27 @@ class BattleFragment : Fragment(R.layout.fragment_battle), UserBattleAdapter.OnU
         }
         subscribeToObservers()
 
-        //TODO: FIX USERS NOT SHOWING UP ON FRESH INSTALL
-        //TODO: FIX QUESTIONS NOT SHOWING UP ON FRESH INSTALL
 
+        binding.btnBattleRandomOpponent.setOnClickListener { battleRandomOpponent(it) }
 
+    }
 
+    private fun battleRandomOpponent(view: View) {
+        val position: Int = Random.nextInt(0,mainViewModel.dummyUsersForBattle.value!!.lastIndex)
+        val user = mainViewModel.dummyUsersForBattle.value?.get(position)
+
+        view.animate().apply {
+            duration = 200
+            rotationXBy(360f)
+        }.withEndAction {
+            mainViewModel.getJavaQuestions()
+            val action = BattleFragmentDirections.actionBattleFragmentToBattleCountDownFragment(loginViewModel.user.value!!,user!!)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun getTopScorers() {
+        mainViewModel.getTopScorers()
     }
 
     private fun subscribeToObservers() {
@@ -51,7 +68,27 @@ class BattleFragment : Fragment(R.layout.fragment_battle), UserBattleAdapter.OnU
             userBattleAdapter = UserBattleAdapter(it, glide)
             setBattleRv()
             userBattleAdapter.notifyDataSetChanged()
+            getTopScorers()
             Log.d("BATTLE", it.size.toString())
+        }
+
+        mainViewModel.topScores.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.tvFirstPlaceUser.text = it.last().userName
+                binding.tvFirstPlaceUserScore.text = it.last().battlesWon.toString()
+
+                binding.tvSecondPlaceUser.text = it[it.lastIndex -1].userName
+                binding.tvSecondPlaceUserScore.text = it[it.lastIndex -1].battlesWon.toString()
+
+                binding.tvThirdPlaceUser.text = it[it.lastIndex -2].userName
+                binding.tvThirdPlaceUserScore.text = it[it.lastIndex -2].battlesWon.toString()
+
+                binding.tvFourthPlaceUser.text = it[it.lastIndex -3].userName
+                binding.tvFourthPlaceUserScore.text = it[it.lastIndex -3].battlesWon.toString()
+
+                binding.tvFifthPlaceUser.text = it[it.lastIndex -4].userName
+                binding.tvFifthPlaceUserScore.text = it[it.lastIndex -4].battlesWon.toString()
+            }
         }
 
 

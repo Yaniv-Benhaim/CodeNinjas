@@ -3,16 +3,12 @@ package tech.gamedev.codeninjas.ui.battle
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_battle_count_down.*
 import tech.gamedev.codeninjas.R
-import tech.gamedev.codeninjas.databinding.FragmentBattleBinding
 import tech.gamedev.codeninjas.databinding.FragmentBattleCountDownBinding
 import tech.gamedev.codeninjas.other.Constants.FIGHT
 import javax.inject.Inject

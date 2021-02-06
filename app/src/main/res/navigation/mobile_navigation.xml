@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/onBoardingFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -133,6 +133,18 @@
     <action
         android:id="@+id/action_global_to_battleFragment"
         app:destination="@id/battleFragment" />
+
+    <action
+        android:id="@+id/action_global_to_learnFragment"
+        app:destination="@id/learnFragment" />
+
+    <action
+        android:id="@+id/action_global_to_discussFragment"
+        app:destination="@id/discussFragment" />
+
+    <action
+        android:id="@+id/action_global_to_loginFragment"
+        app:destination="@id/splashFragment" />
     <fragment
         android:id="@+id/finishedBattleFragment"
         android:name="tech.gamedev.codeninjas.ui.battle.FinishedBattleFragment"
@@ -147,5 +159,14 @@
         <argument
             android:name="opponent"
             app:argType="tech.gamedev.codeninjas.data.models.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="tech.gamedev.codeninjas.ui.onboarding.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding" >
+        <action
+            android:id="@+id/action_onBoardingFragment_to_splashFragment"
+            app:destination="@id/splashFragment" />
     </fragment>
 </navigation>

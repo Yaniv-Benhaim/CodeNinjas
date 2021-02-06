@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import tech.gamedev.codeninjas.data.models.BattleQuestion
+import tech.gamedev.codeninjas.data.models.User
 import tech.gamedev.codeninjas.repo.BattleRepo
 
 class MainViewModel @ViewModelInject constructor(private val battleRepo: BattleRepo): ViewModel() {
@@ -14,6 +15,9 @@ class MainViewModel @ViewModelInject constructor(private val battleRepo: BattleR
 
     val dummyUsersForBattle = battleRepo.dummyUsers
     val javaQuestions = battleRepo.javaQuestions
+
+    private val _topScores = MutableLiveData<ArrayList<User>>()
+    val topScores: LiveData<ArrayList<User>> = _topScores
 
     fun setWeapon(weapon: String) {
         _weapon.value = weapon
@@ -26,8 +30,15 @@ class MainViewModel @ViewModelInject constructor(private val battleRepo: BattleR
     fun getFiveRandomJavaQuestions(): List<BattleQuestion> {
         val questions = javaQuestions.value
         questions!!.shuffle()
-        return listOf(questions[0],questions[1],questions[2],questions[3],questions[4])
+        return listOf(questions[0], questions[1], questions[2], questions[3], questions[4])
     }
 
     fun giveUpBattle() = battleRepo.giveUpBattle()
+
+    fun getTopScorers() {
+        val users = dummyUsersForBattle.value
+        val sortedList = users?.sortedWith(compareBy { it.battlesWon })
+        _topScores.value = ArrayList()
+        _topScores.value!!.addAll(sortedList!!)
+    }
 }
