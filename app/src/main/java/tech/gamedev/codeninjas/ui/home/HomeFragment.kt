@@ -112,7 +112,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
     }
 
     private fun setupCountdownTimer() {
-        val timer = object: CountDownTimer(20000, 4000) {
+        val timer = object: CountDownTimer(20000, 6000) {
             override fun onTick(millisUntilFinished: Long) {
                 val curItem = binding.vpFeaturedItems.currentItem
                 when(binding.vpFeaturedItems.currentItem) {

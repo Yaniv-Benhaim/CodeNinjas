@@ -2,15 +2,9 @@ package tech.gamedev.codeninjas.ui.learn
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,10 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_learn.*
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.LessonsAdapter
-import tech.gamedev.codeninjas.data.models.LessonAndQuestion
+import tech.gamedev.codeninjas.data.models.LessonCollectionLink
 import tech.gamedev.codeninjas.databinding.FragmentLearnBinding
-import tech.gamedev.codeninjas.utils.setBattleQuestions
-import tech.gamedev.codeninjas.utils.setDummyUsers
 
 
 @AndroidEntryPoint
@@ -49,7 +41,7 @@ class LearnFragment : Fragment(R.layout.fragment_learn), LessonsAdapter.LessonCl
         db = FirebaseFirestore.getInstance()
         subscribeToObservers()
         setupLessonsRv()
-        _learnViewModel.createNewLesson()
+
 
 
 
@@ -68,8 +60,8 @@ class LearnFragment : Fragment(R.layout.fragment_learn), LessonsAdapter.LessonCl
                 .setPageSize(4)
                 .build()
 
-            val options = FirestorePagingOptions.Builder<LessonAndQuestion>()
-                .setQuery(query, config, LessonAndQuestion::class.java)
+            val options = FirestorePagingOptions.Builder<LessonCollectionLink>()
+                .setQuery(query, config, LessonCollectionLink::class.java)
                 .setLifecycleOwner(this@LearnFragment).build()
             lessonsAdapter.updateOptions(options)
 
@@ -92,8 +84,8 @@ class LearnFragment : Fragment(R.layout.fragment_learn), LessonsAdapter.LessonCl
             .setPageSize(4)
             .build()
 
-        val options = FirestorePagingOptions.Builder<LessonAndQuestion>()
-            .setQuery(query, config, LessonAndQuestion::class.java)
+        val options = FirestorePagingOptions.Builder<LessonCollectionLink>()
+            .setQuery(query, config, LessonCollectionLink::class.java)
             .setLifecycleOwner(this@LearnFragment).build()
 
         lessonsAdapter = LessonsAdapter(options)
@@ -104,13 +96,10 @@ class LearnFragment : Fragment(R.layout.fragment_learn), LessonsAdapter.LessonCl
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        lessonsAdapter.startListening()
-    }
+
 
     override fun onLessonClicked(documentSnapshot: DocumentSnapshot) {
-        val lesson = documentSnapshot.toObject<LessonAndQuestion>()
+        val lesson = documentSnapshot.toObject<LessonCollectionLink>()
         val action = LearnFragmentDirections.actionLearnFragmentToLessonDetailFragment(lesson!!)
         findNavController().navigate(action)
     }

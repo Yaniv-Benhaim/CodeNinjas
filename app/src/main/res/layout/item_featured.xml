@@ -7,9 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:layout_margin="12dp"
-        app:cardCornerRadius="15dp"
+        android:layout_height="250dp"
         app:cardBackgroundColor="@color/orange"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,8 +15,6 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="15dp"
             app:cardBackgroundColor="@color/white"
             android:layout_height="match_parent">
 
@@ -45,7 +41,7 @@
                 android:textColor="@color/white"
                 tools:text="BATTLE OTHER NINJAS"
                 android:background="@color/orange"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:gravity="center"
@@ -55,7 +51,7 @@
             
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottieFeatured"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:lottie_rawRes="@raw/watch_video2"

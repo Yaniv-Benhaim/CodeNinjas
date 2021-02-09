@@ -4,17 +4,21 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import tech.gamedev.codeninjas.data.models.LessonAndQuestion
+import tech.gamedev.codeninjas.data.models.LessonCollectionLink
 import tech.gamedev.codeninjas.other.Constants.CPLUSPLUS
 import tech.gamedev.codeninjas.other.Constants.JAVA
 import tech.gamedev.codeninjas.other.Constants.JAVASCRIPT
 import tech.gamedev.codeninjas.other.Constants.KOTLIN
 import tech.gamedev.codeninjas.other.Constants.SWIFT
-import java.lang.Exception
 import java.util.*
+import kotlin.Exception
+import kotlin.collections.ArrayList
 
 class LessonRepository {
 
@@ -36,6 +40,12 @@ class LessonRepository {
 
     private val _amountOfLessons = MutableLiveData<Int>()
     val amountOfLessons: LiveData<Int> = _amountOfLessons
+
+    private val _lessons = MutableLiveData<ArrayList<LessonCollectionLink>>()
+    val lessons: LiveData<ArrayList<LessonCollectionLink>> = _lessons
+
+    private val _specificLessons = MutableLiveData<ArrayList<LessonAndQuestion>>()
+    val specificLessons: LiveData<ArrayList<LessonAndQuestion>> = _specificLessons
 
     fun getUserProgress(subject: String) {
         var lessonsFinished = 0
@@ -139,5 +149,93 @@ class LessonRepository {
             Log.d("USERPROGRESS", e.message.toString())
         }
 
+    }
+
+    /*
+    Get amount of lessons Flow
+    GET -> lessons -> java -> lessons -> lesson1 -> java_introduction -> documents
+
+     */
+
+    fun getLessons(type: String) = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            when(type){
+                JAVA -> getLessonsFromType(JAVA)
+                KOTLIN -> getLessonsFromType(KOTLIN)
+                CPLUSPLUS -> getLessonsFromType(CPLUSPLUS)
+                JAVASCRIPT -> getLessonsFromType(JAVASCRIPT)
+                SWIFT -> getLessonsFromType(SWIFT)
+            }
+        } catch (e: Exception) {
+            Log.d("lessons", e.message.toString())
+        }
+    }
+
+    private suspend fun getLessonsFromType(type: String) {
+        try {
+            val lessonCollection = when(type) {
+                JAVA -> lessonCountRefJava.get().await()
+                KOTLIN -> lessonCountRefKotlin.get().await()
+                CPLUSPLUS -> lessonCountRefCplusplus.get().await()
+                JAVASCRIPT -> lessonCountRefJavascript.get().await()
+                SWIFT -> lessonCountRefSwift.get().await()
+                else -> lessonCountRefJava.get().await()
+            }
+
+            _lessons.value = ArrayList()
+            for (document in lessonCollection.documents) {
+                val lesson = document.toObject<LessonCollectionLink>()
+                _lessons.value!!.add(lesson!!)
+            }
+
+        } catch (e: Exception) {
+            Log.d("lessons", e.message.toString())
+        }
+    }
+
+    fun getSpecificLessonList(type: String, lessonCollection: LessonCollectionLink) = CoroutineScope(Dispatchers.IO).launch {
+
+        val specificLessons = when(type) {
+            JAVA -> lessonCountRefJava
+                    .document(lessonCollection.lesson_id)
+                    .collection(lessonCollection.collection_link)
+                    .get()
+                    .await()
+
+            KOTLIN -> lessonCountRefKotlin
+                    .document(lessonCollection.lesson_id)
+                    .collection(lessonCollection.collection_link)
+                    .get()
+                    .await()
+
+            CPLUSPLUS -> lessonCountRefCplusplus
+                    .document(lessonCollection.lesson_id)
+                    .collection(lessonCollection.collection_link)
+                    .get()
+                    .await()
+
+            JAVASCRIPT -> lessonCountRefJavascript
+                    .document(lessonCollection.lesson_id)
+                    .collection(lessonCollection.collection_link)
+                    .get()
+                    .await()
+
+            SWIFT -> lessonCountRefSwift
+                    .document(lessonCollection.lesson_id)
+                    .collection(lessonCollection.collection_link)
+                    .get()
+                    .await()
+
+            else -> lessonCountRefJava.document(lessonCollection.lesson_id)
+                    .collection(lessonCollection.collection_link)
+                    .get()
+                    .await()
+        }
+
+        _specificLessons.value = ArrayList()
+        for (document in specificLessons) {
+            val lesson = document.toObject<LessonAndQuestion>()
+            _specificLessons.value!!.add(lesson)
+        }
     }
 }

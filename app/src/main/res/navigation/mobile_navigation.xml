@@ -86,7 +86,7 @@
         tools:layout="@layout/fragment_lesson_detail" >
         <argument
             android:name="lesson"
-            app:argType="tech.gamedev.codeninjas.data.models.LessonAndQuestion" />
+            app:argType="tech.gamedev.codeninjas.data.models.LessonCollectionLink" />
         <action
             android:id="@+id/action_lessonDetailFragment_to_questionDetailFragment"
             app:destination="@id/questionDetailFragment" />

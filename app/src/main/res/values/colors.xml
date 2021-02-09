@@ -8,8 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FF5722</color>
+    <color name="orange_transparent">#80FF5722</color>
     <color name="grey">#802B2B2B</color>
     <color name="grey_dark">#242424</color>
-    <color name="grey_dark_transparent">#80242424</color>
+    <color name="grey_dark_transparent">#99242424</color>
     <color name="base_background_dark">#181818</color>
+    <color name="light_grey">#C3C3C3</color>
 </resources>

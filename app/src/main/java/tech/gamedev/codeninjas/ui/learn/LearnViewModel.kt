@@ -5,6 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import tech.gamedev.codeninjas.data.models.LessonCollectionLink
 import tech.gamedev.codeninjas.repo.CreateNewLessonsRepo
 import tech.gamedev.codeninjas.repo.LessonRepository
 import tech.gamedev.codeninjas.repo.LoginRepository
@@ -13,6 +14,9 @@ class LearnViewModel @ViewModelInject constructor(private val repoNewLesson: Cre
 
     private val _weapon = MutableLiveData<String>()
     val subject: LiveData<String> = _weapon
+
+    val lessons = lessonRepository.lessons
+    val specificLessons = lessonRepository.specificLessons
 
     private val _currentProgressInSteps = MutableLiveData<Int>()
     val currentProgressInSteps: LiveData<Int> = _currentProgressInSteps
@@ -33,7 +37,7 @@ class LearnViewModel @ViewModelInject constructor(private val repoNewLesson: Cre
         getProgress()
     }
 
-    fun getProgress() {
+    private fun getProgress() {
         if(userProgress.value != null && userProgress.value!! > 0){
             if (totalAmountOfLessons.value != null && totalAmountOfLessons.value!! > 0) {
                 val curProgress = userProgress.value!!
@@ -50,4 +54,7 @@ class LearnViewModel @ViewModelInject constructor(private val repoNewLesson: Cre
         }
         _currentProgressInSteps.value = 1
     }
+
+    fun getLessons() = lessonRepository.getLessons(subject.value!!)
+    fun getSpecificLessons(lessonCollection: LessonCollectionLink) = lessonRepository.getSpecificLessonList(subject.value!!, lessonCollection)
 }

@@ -14,9 +14,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.android.synthetic.main.item_lesson.view.*
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.data.models.LessonAndQuestion
+import tech.gamedev.codeninjas.data.models.LessonCollectionLink
 
-class LessonsAdapter(options: FirestorePagingOptions<LessonAndQuestion>) :
-    FirestorePagingAdapter<LessonAndQuestion, LessonsAdapter.LessonViewHolder>(options)
+class LessonsAdapter(options: FirestorePagingOptions<LessonCollectionLink>) :
+    FirestorePagingAdapter<LessonCollectionLink, LessonsAdapter.LessonViewHolder>(options)
 {
     var lessonsFinished = 0
     var listener: LessonClickedListener? = null
@@ -40,13 +41,13 @@ class LessonsAdapter(options: FirestorePagingOptions<LessonAndQuestion>) :
     override fun onBindViewHolder(
         holder: LessonViewHolder,
         position: Int,
-        model: LessonAndQuestion
+        model: LessonCollectionLink
     ) {
         holder.initialize()
         holder.itemView.apply {
-            tvLessonId.text =  "Lesson ${model.lessonId}"
-            tvLessonTitle.text = model.lessonTitle
-            Log.d("RV", model.lessonTitle)
+            tvLessonId.text =  model.lesson_id
+            tvLessonTitle.text = model.module_title
+            Log.d("RV", model.lesson_id)
             ivCheckMark.isVisible = lessonsFinished >= position
         }
     }
