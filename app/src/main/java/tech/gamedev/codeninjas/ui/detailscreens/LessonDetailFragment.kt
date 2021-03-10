@@ -54,9 +54,10 @@ class LessonDetailFragment : Fragment(R.layout.fragment_lesson_detail), Specific
        val query = db
                .collection("lessons")
                .document(mainViewModel.weapon.value!!.toLowerCase())
+               .collection("modules")
+               .document(args.lesson.collection_link)
                .collection("lessons")
-               .document(args.lesson.lesson_id)
-               .collection(args.lesson.collection_link)
+               .orderBy("lessonId")
 
        val config = PagedList.Config.Builder()
                .setInitialLoadSizeHint(30)
@@ -67,7 +68,7 @@ class LessonDetailFragment : Fragment(R.layout.fragment_lesson_detail), Specific
                .setQuery(query, config, LessonAndQuestion::class.java)
                .setLifecycleOwner(this@LessonDetailFragment).build()
 
-       specificLessonsAdapter = SpecificLessonsAdapter(options, lifecycle, glide)
+       specificLessonsAdapter = SpecificLessonsAdapter(options, glide)
        specificLessonsAdapter.listener = this@LessonDetailFragment
        adapter = specificLessonsAdapter
 

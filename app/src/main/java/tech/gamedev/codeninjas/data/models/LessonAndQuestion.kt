@@ -25,5 +25,7 @@ data class LessonAndQuestion(
     val hintEnd: String = "",
     val imgUrlTwo: String = "",
     val hasVideo: Boolean = false,
-    val videoUrl: String = ""
+    val videoUrl: String = "",
+    val questionHasImg: Boolean = false,
+    val imgUrl: String = ""
 ) : Parcelable

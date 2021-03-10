@@ -12,8 +12,9 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import tech.gamedev.codeninjas.data.models.BattleQuestion
 import tech.gamedev.codeninjas.data.models.User
+import javax.inject.Inject
 
-class BattleRepo {
+class BattleRepo @Inject constructor() {
     private val userRef = FirebaseFirestore.getInstance().collection("users")
     private val javaQuestionRef = FirebaseFirestore.getInstance().collection("battle_questions").document("java").collection("java")
     private val _dummyUsers = MutableLiveData<ArrayList<User>>()

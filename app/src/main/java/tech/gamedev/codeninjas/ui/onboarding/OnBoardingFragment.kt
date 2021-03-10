@@ -16,8 +16,8 @@ import tech.gamedev.codeninjas.ui.onboarding.screens.ThirdFragment
 
 
 class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
-    lateinit var binding: FragmentOnBoardingBinding
-    lateinit var fragmentList: ArrayList<Fragment>
+    private lateinit var binding: FragmentOnBoardingBinding
+    private lateinit var fragmentList: ArrayList<Fragment>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,8 +40,7 @@ class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
         )
         adapter = OnBoardingAdapter(
             fragmentList,
-            requireActivity().supportFragmentManager,
-            lifecycle)
+            this@OnBoardingFragment)
     }
 
     private fun onBoardingFinished(): Boolean {

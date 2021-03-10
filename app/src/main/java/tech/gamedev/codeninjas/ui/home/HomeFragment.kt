@@ -33,8 +33,10 @@ import tech.gamedev.codeninjas.adapters.FeaturedItemsAdapter
 import tech.gamedev.codeninjas.databinding.FragmentHomeBinding
 import tech.gamedev.codeninjas.other.Constants
 import tech.gamedev.codeninjas.ui.battle.BattleCountDownFragmentDirections
+import tech.gamedev.codeninjas.utils.getQuickKnowledge
 import tech.gamedev.codeninjas.utils.setToast
 import tech.gamedev.codeninjas.viewmodels.MainViewModel
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -63,6 +65,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
     private fun subscribeToObservers() {
         _mainViewModel.weapon.observe(viewLifecycleOwner) {
             binding.tvBtnGoToInterviewQuestions.text = "$it interview questions"
+            setupCategories(it.toLowerCase(Locale.ROOT))
         }
     }
 
@@ -129,4 +132,21 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
         }
         timer.start()
     }
+
+    private fun setupCategories(subject: String) {
+        binding.btnCategory1.text = getQuickKnowledge(subject)[0]
+        binding.btnCategory2.text = getQuickKnowledge(subject)[1]
+        binding.btnCategory3.text = getQuickKnowledge(subject)[2]
+        binding.btnCategory4.text = getQuickKnowledge(subject)[3]
+        binding.btnCategory5.text = getQuickKnowledge(subject)[4]
+        binding.btnCategory6.text = getQuickKnowledge(subject)[5]
+        binding.btnCategory7.text = getQuickKnowledge(subject)[6]
+        binding.btnCategory8.text = getQuickKnowledge(subject)[7]
+        binding.btnCategory9.text = getQuickKnowledge(subject)[8]
+        binding.btnCategory10.text = getQuickKnowledge(subject)[9]
+
+    }
+
+
+
 }

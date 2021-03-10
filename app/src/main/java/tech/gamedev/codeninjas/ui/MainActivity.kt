@@ -35,13 +35,10 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
     lateinit var glide: RequestManager
     private var _isWeaponMenuOpen = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        if (savedInstanceState == null) {
-            AppRating.Builder(this)
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        AppRating.Builder(this)
                 .setMinimumLaunchTimes(5)
                 .setMinimumDays(2)
                 .setMinimumLaunchTimesToShowAgain(3)
@@ -49,7 +46,12 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
                 .setRatingThreshold(RatingThreshold.FOUR)
                 .setIconDrawable(ContextCompat.getDrawable(this,R.drawable.ic_ninja))
                 .showIfMeetsConditions()
-        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         AppRating.Builder(this)
             .setMinimumLaunchTimes(5)
@@ -108,13 +110,8 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
     }
 
     private fun openWeaponSelection() {
-        if(_isWeaponMenuOpen) {
-            binding.cvWeaponSelectionMenu.visibility = View.GONE
-            _isWeaponMenuOpen = false
-        } else {
-            binding.cvWeaponSelectionMenu.isVisible = true
-            _isWeaponMenuOpen = true
-        }
+        binding.cvWeaponSelectionMenu.isVisible = !_isWeaponMenuOpen
+        _isWeaponMenuOpen = !_isWeaponMenuOpen
     }
 
     private fun setupChooseNewWeaponRV() = binding.rvChangeWeapon.apply {

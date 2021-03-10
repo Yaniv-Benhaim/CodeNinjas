@@ -15,6 +15,7 @@ class ChooseWeaponAdapter : RecyclerView.Adapter<ChooseWeaponAdapter.ChooseWeapo
     private var nextListener: NextClickedListener? = null
     private var backListener: BackClickedListener? = null
 
+
     inner class ChooseWeaponViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView) {
         fun initialize() {
             itemView.btnBack.setOnClickListener {

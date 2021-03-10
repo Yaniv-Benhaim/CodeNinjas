@@ -4,11 +4,15 @@ import android.content.Context
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.DefineComponent
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.repo.BattleRepo
 import tech.gamedev.codeninjas.repo.CreateNewLessonsRepo
@@ -17,7 +21,7 @@ import tech.gamedev.codeninjas.repo.LoginRepository
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Singleton
@@ -31,6 +35,8 @@ object AppModule {
             .diskCacheStrategy(DiskCacheStrategy.DATA)
     )
 
+
+
     @Singleton
     @Provides
     fun provideLoginRepository() = LoginRepository()
@@ -43,7 +49,6 @@ object AppModule {
     @Provides
     fun provideLessonRepository() = LessonRepository()
 
-    @Singleton
     @Provides
-    fun provideBattleRepository() = BattleRepo()
+    fun provideFirestore(): FirebaseFirestore =  FirebaseFirestore.getInstance()
 }

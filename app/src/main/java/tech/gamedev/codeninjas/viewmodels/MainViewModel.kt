@@ -4,11 +4,14 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import tech.gamedev.codeninjas.data.models.BattleQuestion
 import tech.gamedev.codeninjas.data.models.User
 import tech.gamedev.codeninjas.repo.BattleRepo
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(private val battleRepo: BattleRepo): ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val battleRepo: BattleRepo): ViewModel() {
 
     private val _weapon = MutableLiveData<String>()
     val weapon: LiveData<String> = _weapon

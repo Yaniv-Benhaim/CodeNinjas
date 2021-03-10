@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="visible"
+        android:id="@+id/clQuestionLayout"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_marginTop="?actionBarSize"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvQuestion"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ninja_gradient"
+                    android:textColor="@color/orange"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:layout_marginTop="24dp"
+                    tools:text="Lets see if you understood" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvQuestionContent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="48dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tvQuestion"
+                    app:cardBackgroundColor="@color/grey_dark">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="24dp">
+
+                        <TextView
+                            android:id="@+id/tvLessonQuestion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:gravity="start"
+                            android:textColor="#9E9E9E"
+                            android:fontFamily="@font/roboto"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Java is a high level, modern programming language designed in the early 1990s by Sun Microsystems, and currently owned by Oracle.\n\n Java is Platform Independent, which means that you only need to write the program once to be able to run it on a number of different platforms! Java is portable, robust, and dynamic, with the ability to fit the needs of virtually any type of application." />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:id="@+id/ivQuestion"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/cvQuestionContent"
+                    tools:src="@drawable/img_example_code"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etAnswerContainer"
+                    android:layout_width="match_parent"
+                    android:layout_margin="70dp"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:hint="Answer.."
+                    app:layout_constraintTop_toBottomOf="@id/cvQuestionContent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etAnswer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:visibility="visible"
+                    android:id="@+id/btnAnswerContainer"
+                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivQuestion"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/btnAnswerA"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="48dp"
+                        android:text="@string/btn_continue"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:background="@drawable/btn_answer_bg"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:fontFamily="@font/ninja_lazer"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvBtnAnswerA"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            tools:text="ANSWER A"
+                            android:fontFamily="@font/roboto"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/btnAnswerB"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="@string/btn_continue"
+                        android:layout_margin="24dp"
+                        android:background="@drawable/btn_answer_bg"
+                        app:layout_constraintTop_toBottomOf="@id/btnAnswerA"
+                        android:fontFamily="@font/ninja_lazer"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvBtnAnswerB"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            tools:text="ANSWER B"
+                            android:fontFamily="@font/roboto"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/btnAnswerC"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="@string/btn_continue"
+                        android:layout_margin="24dp"
+                        android:background="@drawable/btn_answer_bg"
+                        app:layout_constraintTop_toBottomOf="@id/btnAnswerB"
+                        android:fontFamily="@font/ninja_lazer"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvBtnAnswerC"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            tools:text="ANSWER C"
+                            android:fontFamily="@font/roboto"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/btnAnswerD"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="@string/btn_continue"
+                        android:layout_margin="24dp"
+                        android:background="@drawable/btn_answer_bg"
+                        app:layout_constraintTop_toBottomOf="@id/btnAnswerC"
+                        android:fontFamily="@font/ninja_lazer"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvBtnAnswerD"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            tools:text="ANSWER D"
+                            android:fontFamily="@font/roboto"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
+
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:layout_constraintTop_toBottomOf="@id/btnAnswerContainer"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnAnswer"
+        android:layout_width="match_parent"
+        android:background="@drawable/btn_background"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_continue"
+        android:textColor="@color/white"
+        android:layout_margin="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="@font/ninja_lazer"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieCorrectAnim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/correct_anim"
+        android:visibility="gone"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieWrongAnim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/wrong_anim"
+        android:visibility="gone"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

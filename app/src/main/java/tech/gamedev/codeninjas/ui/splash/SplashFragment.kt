@@ -24,6 +24,7 @@ import tech.gamedev.codeninjas.utils.setToast
 
 
 class SplashFragment : Fragment(R.layout.fragment_splash) {
+
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
     private val loginViewModel: LoginViewModel by activityViewModels()
@@ -74,7 +75,8 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     private fun googleAuthForFirebase(account: GoogleSignInAccount) {
         val credentials = GoogleAuthProvider.getCredential(account.idToken, null)
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Main).launch {
+
             try {
                 auth.signInWithCredential(credentials).await()
                 val bundle = Bundle()
@@ -83,13 +85,14 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
                 loginViewModel.checkIfUserExists()
                 withContext(Dispatchers.Main) {
                     setToast("Welcome ${auth.currentUser!!.displayName}")
+                    Log.e("LOGIN", "LOGIN SUCCESFULL")
                     findNavController().navigate(R.id.action_splashFragment_to_chooseWeaponFragment)
                 }
 
 
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Log.e("ERROR", e.message.toString())
+                    Log.e("LOGIN", e.message.toString())
                 }
             }
         }

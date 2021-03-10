@@ -18,6 +18,7 @@ import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.LessonsAdapter
 import tech.gamedev.codeninjas.data.models.LessonCollectionLink
 import tech.gamedev.codeninjas.databinding.FragmentLearnBinding
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -26,7 +27,10 @@ class LearnFragment : Fragment(R.layout.fragment_learn), LessonsAdapter.LessonCl
     private val _learnViewModel: LearnViewModel by activityViewModels()
     private lateinit var lessonsAdapter: LessonsAdapter
     private lateinit var subject: String
-    private lateinit var db: FirebaseFirestore
+
+    @Inject
+    lateinit var db: FirebaseFirestore
+
     private lateinit var binding: FragmentLearnBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +45,8 @@ class LearnFragment : Fragment(R.layout.fragment_learn), LessonsAdapter.LessonCl
         db = FirebaseFirestore.getInstance()
         subscribeToObservers()
         setupLessonsRv()
+        /*_learnViewModel.createNewLesson()*/
+
 
 
 
@@ -54,7 +60,7 @@ class LearnFragment : Fragment(R.layout.fragment_learn), LessonsAdapter.LessonCl
             subject = it.toLowerCase()
             Log.d("WEAPON", subject)
 
-            val query = db.collection("lessons").document(subject).collection("lessons")
+            val query = db.collection("lessons").document(subject).collection("modules")
             val config = PagedList.Config.Builder()
                 .setInitialLoadSizeHint(30)
                 .setPageSize(4)
