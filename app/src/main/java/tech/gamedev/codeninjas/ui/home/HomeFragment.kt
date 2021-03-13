@@ -1,15 +1,22 @@
 package tech.gamedev.codeninjas.ui.home
 
 import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RemoteViews
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -32,6 +39,7 @@ import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.FeaturedItemsAdapter
 import tech.gamedev.codeninjas.databinding.FragmentHomeBinding
 import tech.gamedev.codeninjas.other.Constants
+import tech.gamedev.codeninjas.other.Constants.INTERVIEW_QUESTIONS
 import tech.gamedev.codeninjas.ui.battle.BattleCountDownFragmentDirections
 import tech.gamedev.codeninjas.utils.getQuickKnowledge
 import tech.gamedev.codeninjas.utils.setToast
@@ -45,9 +53,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
 
     private val _mainViewModel: MainViewModel by activityViewModels()
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var featuredAdapter: FeaturedItemsAdapter
     @Inject
-    lateinit var glide: RequestManager
+    lateinit var featuredAdapter: FeaturedItemsAdapter
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,15 +64,14 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
         subscribeToObservers()
         setupFeaturedVP()
         setupIndicator()
+
         btnGoToInterViewQuestions.setOnClickListener { navigateToQueAndAns() }
     }
-
-
 
     @SuppressLint("SetTextI18n")
     private fun subscribeToObservers() {
         _mainViewModel.weapon.observe(viewLifecycleOwner) {
-            binding.tvBtnGoToInterviewQuestions.text = "$it interview questions"
+            binding.tvBtnGoToInterviewQuestions.text = "$it  $INTERVIEW_QUESTIONS"
             setupCategories(it.toLowerCase(Locale.ROOT))
         }
     }
@@ -75,25 +82,23 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
     }
 
     private fun setupFeaturedVP() = binding.vpFeaturedItems.apply {
-        featuredAdapter = FeaturedItemsAdapter(glide)
+
         featuredAdapter.setOnNextClickedListener(this@HomeFragment)
         adapter = featuredAdapter
         setupCountdownTimer()
-
     }
 
     private fun setupIndicator() {
         TabLayoutMediator(binding.indicator, binding.vpFeaturedItems) { tab, position ->
-            //Some implementation
+
         }.attach()
     }
-
 
     private fun getQuestionAndUserData() {
         //GET DUMMY USERS FOR BATTLE SYSTEM
         _mainViewModel.getDummyUsersForBattle()
         _mainViewModel.getJavaQuestions()
-        Log.d("BATTLE", "CALLED GET DUMMY USERS FUNCTION")
+
     }
 
     override fun onNextClicked(position: Int) {
@@ -146,7 +151,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
         binding.btnCategory10.text = getQuickKnowledge(subject)[9]
 
     }
-
 
 
 }

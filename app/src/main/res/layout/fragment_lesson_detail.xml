@@ -7,7 +7,21 @@
     android:background="@color/white"
     tools:context=".ui.detailscreens.LessonDetailFragment">
 
+   <com.google.android.material.tabs.TabLayout
+       android:id="@+id/indicator"
+       app:tabIndicatorHeight="0dp"
+       android:layout_width="match_parent"
+       android:layout_height="30dp"
+       android:background="@color/grey_dark"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:tabGravity="center"/>
+
+
    <androidx.viewpager2.widget.ViewPager2
+       android:layout_marginTop="30dp"
        android:id="@+id/vpLessons"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>

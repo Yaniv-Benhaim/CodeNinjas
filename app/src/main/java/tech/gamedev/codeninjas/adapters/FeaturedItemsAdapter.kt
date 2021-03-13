@@ -9,9 +9,10 @@ import com.bumptech.glide.RequestManager
 import kotlinx.android.synthetic.main.item_featured.view.*
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.utils.getFeaturedItems
+import tech.gamedev.codeninjas.utils.loadImageUrl
 
 
-class FeaturedItemsAdapter (val glide: RequestManager) : RecyclerView.Adapter<FeaturedItemsAdapter.FeaturedViewHolder> () {
+class FeaturedItemsAdapter () : RecyclerView.Adapter<FeaturedItemsAdapter.FeaturedViewHolder> () {
 
 
     private var nextListener: ItemClickedListener? = null
@@ -41,25 +42,25 @@ class FeaturedItemsAdapter (val glide: RequestManager) : RecyclerView.Adapter<Fe
         when(position) {
             0 -> {
                 holder.itemView.lottieFeatured.cancelAnimation()
-                glide.load(R.drawable.img_ninja_battle).into(holder.itemView.ivFeaturedBg)
+                holder.itemView.ivFeaturedBg.setImageResource(R.drawable.img_ninja_battle)
                 holder.itemView.lottieFeatured.setAnimation(R.raw.tournament_lottie)
                 holder.itemView.lottieFeatured.playAnimation()
             }
             1 -> {
                 holder.itemView.lottieFeatured.cancelAnimation()
-                glide.load(R.drawable.img_watch_phone).into(holder.itemView.ivFeaturedBg)
+                holder.itemView.ivFeaturedBg.setImageResource(R.drawable.img_watch_phone)
                 holder.itemView.lottieFeatured.setAnimation(R.raw.watch_video2)
                 holder.itemView.lottieFeatured.playAnimation()
             }
             2 -> {
                 holder.itemView.lottieFeatured.cancelAnimation()
-                glide.load(R.drawable.img_ask_questions).into(holder.itemView.ivFeaturedBg)
+                holder.itemView.ivFeaturedBg.setImageResource(R.drawable.img_ask_questions)
                 holder.itemView.lottieFeatured.setAnimation(R.raw.chat_lottie)
                 holder.itemView.lottieFeatured.playAnimation()
             }
             3 -> {
                 holder.itemView.lottieFeatured.cancelAnimation()
-                glide.load(R.drawable.img_rating).into(holder.itemView.ivFeaturedBg)
+                holder.itemView.ivFeaturedBg.setImageResource(R.drawable.img_watch_phone)
                 holder.itemView.lottieFeatured.setAnimation(R.raw.rating_lottie)
                 holder.itemView.lottieFeatured.playAnimation()
             }

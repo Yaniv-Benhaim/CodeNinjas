@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import kotlinx.android.synthetic.main.item_change_weapon.view.*
@@ -37,8 +38,11 @@ class ChangeWeaponAdapter(val glide: RequestManager) : RecyclerView.Adapter<Chan
         holder.itemView.tvNewWeapon.text = weapon
         holder.initialize()
         when(position) {
-            0 -> glide.load(R.drawable.kotlin_logo).into(holder.itemView.ivWeaponLogo)
-            1 -> glide.load(R.drawable.java_logo).into(holder.itemView.ivWeaponLogo)
+            0 -> {
+                glide.load(R.drawable.java_logo).into(holder.itemView.ivWeaponLogo)
+                holder.itemView.tvComingSoonChangeWeapon.isVisible = false
+            }
+            1 -> glide.load(R.drawable.kotlin_logo).into(holder.itemView.ivWeaponLogo)
             2 -> glide.load(R.drawable.cplusplus_logo).into(holder.itemView.ivWeaponLogo)
             3 -> glide.load(R.drawable.swift_logo).into(holder.itemView.ivWeaponLogo)
             4 -> glide.load(R.drawable.javascript_logo).into(holder.itemView.ivWeaponLogo)

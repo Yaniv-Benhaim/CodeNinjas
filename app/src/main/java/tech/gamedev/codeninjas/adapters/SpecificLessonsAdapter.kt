@@ -39,7 +39,7 @@ import tech.gamedev.codeninjas.utils.loadImageUrl
 import tech.gamedev.codeninjas.utils.textContainsImage
 
 
-class SpecificLessonsAdapter(options: FirestorePagingOptions<LessonAndQuestion>,  private val glide: RequestManager) :
+class SpecificLessonsAdapter(options: FirestorePagingOptions<LessonAndQuestion>) :
     FirestorePagingAdapter<LessonAndQuestion, SpecificLessonsAdapter.LessonViewHolder>(options)
 {
 
@@ -137,10 +137,16 @@ class SpecificLessonsAdapter(options: FirestorePagingOptions<LessonAndQuestion>,
                     if(model.questionOneIsMultipleChoice){
                         etAnswerContainer.isVisible = false
                         btnAnswerContainer.isVisible = true
+
                         tvBtnAnswerA.text = model.answerA
                         tvBtnAnswerB.text = model.answerB
                         tvBtnAnswerC.text = model.answerC
                         tvBtnAnswerD.text = model.answerD
+
+                        tvBtnAnswerA.setBackgroundResource(R.drawable.btn_answer_bg)
+                        tvBtnAnswerB.setBackgroundResource(R.drawable.btn_answer_bg)
+                        tvBtnAnswerC.setBackgroundResource(R.drawable.btn_answer_bg)
+                        tvBtnAnswerD.setBackgroundResource(R.drawable.btn_answer_bg)
 
                         tvBtnAnswerA.setOnClickListener {
                             it.setBackgroundResource(R.drawable.btn_answer_selected_bg)

@@ -24,11 +24,11 @@ fun Fragment.setToast(message: String) {
 fun HomeFragment.getQuickKnowledge(subject: String): List<String> {
 
     return when(subject) {
-        JAVA.toLowerCase() -> listOf("Loops", "IF ELSE", "Variables", "Functions", "Classes", "Objects", "Casting", "Threads", "Arrays", "Try")
-        KOTLIN.toLowerCase() -> listOf("Loops", "IF ELSE", "Variables", "Functions", "Classes", "Objects", "Casting", "Threads", "Arrays", "Try")
-        SWIFT.toLowerCase() -> listOf("Loops", "IF ELSE", "Variables", "Functions", "Classes", "Objects", "Casting", "Threads", "Arrays", "Try")
-        CPLUSPLUS.toLowerCase() -> listOf("Loops", "IF ELSE", "Variables", "Functions", "Classes", "Objects", "Casting", "Threads", "Arrays", "Try")
-        JAVASCRIPT.toLowerCase() -> listOf("Loops", "IF ELSE", "Variables", "Functions", "Classes", "Objects", "Casting", "Threads", "Arrays", "Try")
+        JAVA.toLowerCase() -> listOf("FUNCTIONS", "LOOPS", "Variables", "IF", "Classes", "Objects", "Casting", "Threads", "Arrays", "Try")
+        KOTLIN.toLowerCase() -> listOf("FUNCTIONS", "LOOPS", "Variables", "IF", "Classes", "Objects", "Casting", "Threads", "Arrays", "Try")
+        SWIFT.toLowerCase() -> listOf("FUNCTIONS", "LOOPS", "Variables", "IF", "Classes", "Objects", "Casting", "Threads", "Arrays", "Try")
+        CPLUSPLUS.toLowerCase() -> listOf("FUNCTIONS", "LOOPS", "Variables", "IF", "Classes", "Objects", "Casting", "Threads", "Arrays", "Try")
+        JAVASCRIPT.toLowerCase() -> listOf("FUNCTIONS", "LOOPS", "Variables", "IF", "Classes", "Objects", "Casting", "Threads", "Arrays", "Try")
         else -> emptyList()
     }
 

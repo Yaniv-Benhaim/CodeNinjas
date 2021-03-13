@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -13,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.RequestManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.messaging.FirebaseMessaging
 import com.suddenh4x.ratingdialog.AppRating
 import com.suddenh4x.ratingdialog.preferences.RatingThreshold
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,8 +21,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.ChangeWeaponAdapter
 import tech.gamedev.codeninjas.databinding.ActivityMainBinding
+import tech.gamedev.codeninjas.other.Constants
+import tech.gamedev.codeninjas.other.Constants.ADMIN
 import tech.gamedev.codeninjas.ui.learn.LearnViewModel
-import tech.gamedev.codeninjas.utils.setBattleQuestions
+import tech.gamedev.codeninjas.ui.splash.LoginViewModel
 import tech.gamedev.codeninjas.viewmodels.MainViewModel
 import javax.inject.Inject
 
@@ -30,6 +33,7 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
 
     private val mainViewModel: MainViewModel by viewModels()
     private val learnViewModel: LearnViewModel by viewModels()
+    private val loginViewModel by viewModels<LoginViewModel>()
     lateinit var binding: ActivityMainBinding
     @Inject
     lateinit var glide: RequestManager
@@ -44,7 +48,7 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
                 .setMinimumLaunchTimesToShowAgain(3)
                 .setMinimumDaysToShowAgain(3)
                 .setRatingThreshold(RatingThreshold.FOUR)
-                .setIconDrawable(ContextCompat.getDrawable(this,R.drawable.ic_ninja))
+                .setIconDrawable(ContextCompat.getDrawable(this, R.drawable.ic_ninja))
                 .showIfMeetsConditions()
     }
 
@@ -52,6 +56,8 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        checkIfAdmin()
+        FirebaseMessaging.getInstance().subscribeToTopic(Constants.NOTIFICATION_TOPIC)
 
         AppRating.Builder(this)
             .setMinimumLaunchTimes(5)
@@ -59,7 +65,7 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
             .setMinimumLaunchTimesToShowAgain(3)
             .setMinimumDaysToShowAgain(3)
             .setRatingThreshold(RatingThreshold.FOUR)
-            .setIconDrawable(ContextCompat.getDrawable(this,R.drawable.ic_ninja))
+            .setIconDrawable(ContextCompat.getDrawable(this, R.drawable.ic_ninja))
             .showIfMeetsConditions()
 
 
@@ -114,10 +120,23 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
         _isWeaponMenuOpen = !_isWeaponMenuOpen
     }
 
+    private fun checkIfAdmin() {
+        if(loginViewModel.getCurrentUser() == ADMIN) {
+            binding.btnAdmin.isVisible = true
+            binding.btnAdmin.setOnClickListener { nav_host_fragment.findNavController().navigate(R.id.action_homeFragment_to_adminFragment) }
+        } else {
+            binding.btnAdmin.isVisible = false
+        }
+    }
+
     private fun setupChooseNewWeaponRV() = binding.rvChangeWeapon.apply {
         val chooseNewWeaponAdapter = ChangeWeaponAdapter(glide)
         chooseNewWeaponAdapter.setOnWeaponClickedListener(this@MainActivity)
-        layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false )
+        layoutManager = LinearLayoutManager(
+            this@MainActivity,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
         adapter = chooseNewWeaponAdapter
     }
 

@@ -10,7 +10,9 @@
         android:name="tech.gamedev.codeninjas.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
-
+        <action
+            android:id="@+id/action_homeFragment_to_adminFragment"
+            app:destination="@id/adminFragment" />
     </fragment>
 
     <fragment
@@ -169,4 +171,8 @@
             android:id="@+id/action_onBoardingFragment_to_splashFragment"
             app:destination="@id/splashFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/adminFragment"
+        android:name="tech.gamedev.codeninjas.ui.admin.AdminFragment"
+        android:label="AdminFragment" />
 </navigation>

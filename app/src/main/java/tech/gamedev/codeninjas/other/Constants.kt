@@ -33,7 +33,16 @@ object Constants {
 
     //BATTLE
     const val FIGHT = "FIGHT"
+    const val INTERVIEW_QUESTIONS = "interview questions"
 
+    //ADMIN
+    const val ADMIN = "rbJO5aJmmnSMsCE41uDUoOhfSyd2"
+    //Base URL FCM
+    const val BASE_URL = "https://fcm.googleapis.com"
+    const val SERVER_KEY = "AAAAT61isY8:APA91bGBnBG00Ridi26fX3idcJtVFLuJlbhsWn_VQ_GkBvVgt36odw2Pwl_bTOlllk1TJjqnNOpw6pbjCjz-gEQDTm1u11Klz3-ViXTB70YS7qMU-T_7Gxoua3ymvxinLZpBcHqoWh1x"
+    const val CONTENT_TYPE = "application/json"
+    const val NOTIFICATION_TAG = "NOTIFICATION"
+    const val NOTIFICATION_TOPIC = "/topics/myTopic"
     //CATEGORIES
 
 

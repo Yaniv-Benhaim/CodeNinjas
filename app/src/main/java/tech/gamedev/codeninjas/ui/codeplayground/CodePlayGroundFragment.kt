@@ -32,7 +32,9 @@ class CodePlayGroundFragment : Fragment(R.layout.fragment_code_play_ground) {
         binding.wvCodingArea.apply {
             loadUrl(KOTLIN_COMPILER_URL)
             settings.javaScriptEnabled = true
-            settings.forceDark = FORCE_DARK_ON
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                settings.forceDark = FORCE_DARK_ON
+            }
 
 
         }

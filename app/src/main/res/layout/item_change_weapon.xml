@@ -29,6 +29,20 @@
             android:textColor="@color/white"
             android:fontFamily="@font/ninja_lazer"/>
 
+        <TextView
+            android:visibility="visible"
+            android:id="@+id/tvComingSoonChangeWeapon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/orange"
+            android:elevation="4dp"
+            android:text="@string/coming_soon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:fontFamily="@font/ninja_lazer"/>
+
     </LinearLayout>
 
 

@@ -20,7 +20,7 @@ import tech.gamedev.codeninjas.other.Constants.WATCH_VIDEOS
 val userRef = FirebaseFirestore.getInstance().collection("users")
 val battleQuestionsRef = FirebaseFirestore.getInstance().collection("battle_questions")
 
-fun getWeapons() = arrayListOf(KOTLIN, JAVA, CPLUSPLUS, SWIFT, JAVASCRIPT)
+fun getWeapons() = arrayListOf(JAVA, KOTLIN, CPLUSPLUS, SWIFT, JAVASCRIPT)
 
 fun getFeaturedItems() = arrayListOf(BATTLE_NINJAS, WATCH_VIDEOS, ASK_QUESTIONS, RATE_US)
 

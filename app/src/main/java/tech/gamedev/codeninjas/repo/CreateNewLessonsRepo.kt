@@ -18,113 +18,6 @@ class CreateNewLessonsRepo {
 
 
 
-        val lesson1 = Lesson(
-                1,
-                "Introduction to Java",
-                false,
-                "Java is a high level, modern programming language designed in the early 1990s by Sun Microsystems, and currently owned by Oracle. Java is Platform Independent, which means that you only need to write the program once to be able to run it on a number of different platforms! Java is portable, robust, and dynamic, with the ability to fit the needs of virtually any type of application.",
-                false,
-                "",
-                false,
-                10
-        )
-
-        val question1 = Question(
-                2,
-                "To distribute your application to different platforms, how many Java versions do you need to create?",
-                true,
-                "Just one version",
-                "One for each platform",
-                "Just one version",
-                "Depends on the version of Java",
-                "Two versions",
-                false,
-                ""
-        )
-
-        val newLesson2 = LessonAndQuestion(
-            2,
-            "Java",
-            false,
-            "More than 3 billion devices run Java. Java is used to develop apps for Google's Android OS, various Desktop Applications, such as media players, antivirus programs, Web Applications, Enterprise Applications (i.e. banking), and many more!",
-            false,
-            "",
-            false,
-            "Which of the following statements is true?",
-            true,
-            "Java has a huge developer community",
-            "Java has a huge developer community",
-            "Java was developed for handling space applications",
-            "Java is used only in web and mobile applications",
-            "Java like C is a low level programming language",
-            10
-        )
-
-        val lesson2 = Lesson(
-                3,
-                "Java",
-                false,
-                "More than 3 billion devices run Java. Java is used to develop apps for Google's Android OS, various Desktop Applications, such as media players, antivirus programs, Web Applications, Enterprise Applications (i.e. banking), and many more!",
-                false,
-                "",
-                false,
-                10
-        )
-
-        val question2 = Question(
-                4,
-                "Which of the following statements is true?",
-                true,
-                "Java has a huge developer community",
-                "Java has a huge developer community",
-                "Java was developed for handling space applications",
-                "Java is used only in web and mobile applications",
-                "Java like C is a low level programming language",
-                false,
-                ""
-        )
-
-        val module = LessonCollectionLink(
-                "module_one",
-                "Java Introduction",
-                "1"
-        )
-
-
-
-        lessonRef.collection("modules").document("module_one").collection("lessons").add(lesson1)
-        lessonRef.collection("modules").document("module_one").collection("lessons").add(question1)
-        lessonRef.collection("modules").document("module_one").collection("lessons").add(lesson2)
-        lessonRef.collection("modules").document("module_one").collection("lessons").add(question2)
-
-        //lessons -> java doc -> modules col -> module1, module2, module2
-
-
-
-
-
-
-
-
-
-        val newLesson3 = LessonAndQuestion(
-            5,
-            "Your first Java program",
-            false,
-            "Let's start by creating a simple program that prints (Hello CodeNinjas) to the screen. <img> ",
-            false,
-            "",
-            false,
-            "Which method is the starting point for all Java programs?",
-            false,
-            "main",
-            "",
-            "",
-            "",
-            "",
-            10,
-            "As a summary:_n- Every program in Java must have a class._n- Every Java program starts from the main method"
-        )
 
         val lesson3 = Lesson(
                 5,
@@ -243,20 +136,20 @@ class CreateNewLessonsRepo {
                 "")
 
 
-        lessonRef.collection("modules").document("module_two").collection("lessons").add(lesson3)
-        lessonRef.collection("modules").document("module_two").collection("lessons").add(question3)
-        lessonRef.collection("modules").document("module_two").collection("lessons").add(lesson4)
-        lessonRef.collection("modules").document("module_two").collection("lessons").add(question4)
-        lessonRef.collection("modules").document("module_two").collection("lessons").add(lesson5)
-        lessonRef.collection("modules").document("module_two").collection("lessons").add(question5)
+        lessonRef.collection("modules").document("module_three").collection("lessons").add(lesson3)
+        lessonRef.collection("modules").document("module_three").collection("lessons").add(question3)
+        lessonRef.collection("modules").document("module_three").collection("lessons").add(lesson4)
+        lessonRef.collection("modules").document("module_three").collection("lessons").add(question4)
+        lessonRef.collection("modules").document("module_three").collection("lessons").add(lesson5)
+        lessonRef.collection("modules").document("module_three").collection("lessons").add(question5)
 
         val module2 = LessonCollectionLink(
-                "module_two",
+                "module_three",
                 "Create your first program",
                 "2"
         )
 
-        lessonRef.collection("modules").document("module_two").set(module2)
+        lessonRef.collection("modules").document("module_three").set(module2)
 
 
     }

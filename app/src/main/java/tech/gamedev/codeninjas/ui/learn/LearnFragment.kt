@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.paging.FirestorePagingOptions
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_learn.*
@@ -27,49 +28,26 @@ class LearnFragment : Fragment(R.layout.fragment_learn), LessonsAdapter.LessonCl
     private val _learnViewModel: LearnViewModel by activityViewModels()
     private lateinit var lessonsAdapter: LessonsAdapter
     private lateinit var subject: String
-
-    @Inject
-    lateinit var db: FirebaseFirestore
-
     private lateinit var binding: FragmentLearnBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLearnBinding.bind(view)
         subject = _learnViewModel.subject.value!!.toLowerCase()
-        db = FirebaseFirestore.getInstance()
         subscribeToObservers()
         setupLessonsRv()
-        /*_learnViewModel.createNewLesson()*/
-
-
-
-
-
-
-
+//        _learnViewModel.createNewLesson()
     }
 
     private fun subscribeToObservers() {
         _learnViewModel.subject.observe(viewLifecycleOwner) {
             subject = it.toLowerCase()
-            Log.d("WEAPON", subject)
 
-            val query = db.collection("lessons").document(subject).collection("modules")
-            val config = PagedList.Config.Builder()
-                .setInitialLoadSizeHint(30)
-                .setPageSize(4)
-                .build()
-
-            val options = FirestorePagingOptions.Builder<LessonCollectionLink>()
-                .setQuery(query, config, LessonCollectionLink::class.java)
-                .setLifecycleOwner(this@LearnFragment).build()
-            lessonsAdapter.updateOptions(options)
+            lessonsAdapter.updateOptions(
+                _learnViewModel
+                    .provideUpdatedOptions(subject)
+                    .setLifecycleOwner(this)
+                    .build())
 
         }
 
@@ -82,27 +60,12 @@ class LearnFragment : Fragment(R.layout.fragment_learn), LessonsAdapter.LessonCl
         }
     }
 
-
     private fun setupLessonsRv() = rvLessons.apply {
-        val query = db.collection("lessons").document("java").collection("lessons")
-        val config = PagedList.Config.Builder()
-            .setInitialLoadSizeHint(30)
-            .setPageSize(4)
-            .build()
-
-        val options = FirestorePagingOptions.Builder<LessonCollectionLink>()
-            .setQuery(query, config, LessonCollectionLink::class.java)
-            .setLifecycleOwner(this@LearnFragment).build()
-
-        lessonsAdapter = LessonsAdapter(options)
+        lessonsAdapter = LessonsAdapter(_learnViewModel.provideUpdatedOptions(subject).setLifecycleOwner(this@LearnFragment).build())
         lessonsAdapter.setOnLessonClickedListener(this@LearnFragment)
         layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
         adapter = lessonsAdapter
-
-
     }
-
-
 
     override fun onLessonClicked(documentSnapshot: DocumentSnapshot) {
         val lesson = documentSnapshot.toObject<LessonCollectionLink>()

@@ -46,7 +46,6 @@ class InterviewQuestionsFragment : Fragment(R.layout.fragment_interview_question
 
     }
 
-
     private fun subscribeToObservers() {
         mainViewModel.weapon.observe(viewLifecycleOwner) {
             when(it) {
@@ -65,7 +64,9 @@ class InterviewQuestionsFragment : Fragment(R.layout.fragment_interview_question
         binding.webViewInterViewQuestions.webViewClient = WebViewClient()
         binding.webViewInterViewQuestions.apply {
             settings.javaScriptEnabled = true
-            settings.forceDark = WebSettings.FORCE_DARK_ON
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                settings.forceDark = WebSettings.FORCE_DARK_ON
+            }
             settings.allowContentAccess = true
             settings.domStorageEnabled = true
             settings.allowFileAccess = true

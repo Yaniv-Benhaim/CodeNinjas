@@ -18,6 +18,7 @@ import javax.inject.Inject
 
 class LoginRepository() {
     private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
     private val currentUser = FirebaseAuth.getInstance().currentUser!!.email
     private val userCollectionRef = db.collection("users")
 
@@ -25,7 +26,7 @@ class LoginRepository() {
     private val _user = MutableLiveData<User>()
     val user: LiveData<User> = _user
 
-    suspend fun checkIfUserExists() {
+    fun checkIfUserExists() {
         userCollectionRef.document(currentUser.toString()).get()
             .addOnSuccessListener {
                 if(it.data != null) {
@@ -47,4 +48,6 @@ class LoginRepository() {
         Log.d(LOGIN_TAG, "USER LIVEDATA SET: ${_user.value}")
         userCollectionRef.document(currentUser).set(newUser)
     }
+
+    fun getCurrentUser() = auth.currentUser?.uid
 }

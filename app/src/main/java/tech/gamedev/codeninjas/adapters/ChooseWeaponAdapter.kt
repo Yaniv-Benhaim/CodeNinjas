@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_choose_your_weapon.view.*
 import tech.gamedev.codeninjas.R
@@ -41,8 +42,14 @@ class ChooseWeaponAdapter : RecyclerView.Adapter<ChooseWeaponAdapter.ChooseWeapo
         holder.itemView.tvWeapon.text = weapon
         holder.initialize()
         when(position) {
-            0 -> holder.itemView.tvWeapon.setTextColor(Color.CYAN)
-            1 -> holder.itemView.tvWeapon.setTextColor(Color.BLUE)
+            0 -> {
+                holder.itemView.tvWeapon.setTextColor(Color.CYAN)
+                holder.itemView.tvComingSoon.isVisible = false
+            }
+            1 -> {
+                holder.itemView.tvWeapon.setTextColor(Color.BLUE)
+                holder.itemView.tvComingSoon.isVisible = true
+            }
             2 -> holder.itemView.tvWeapon.setTextColor(Color.GREEN)
             3 -> holder.itemView.tvWeapon.setTextColor(Color.MAGENTA)
             4 -> holder.itemView.tvWeapon.setTextColor(Color.RED)

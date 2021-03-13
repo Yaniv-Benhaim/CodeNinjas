@@ -15,4 +15,5 @@ class LoginViewModel @Inject constructor(private val loginRepo: LoginRepository)
     val user = loginRepo.user
 
     fun checkIfUserExists() = viewModelScope.launch(Dispatchers.IO) {  loginRepo.checkIfUserExists() }
+    fun getCurrentUser() = loginRepo.getCurrentUser()
 }
