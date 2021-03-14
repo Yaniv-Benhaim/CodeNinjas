@@ -40,4 +40,9 @@
     <string name="title">Title</string>
     <string name="token">Token</string>
     <string name="send_notification">Send Notification</string>
+    <string name="codeninjas_challenged_you_in_a_battle_of_code">CodeNinjas challenged you in a battle of code!</string>
+    <string name="what_is_the_output_of_the_following_code">What is the output of the following code?</string>
+    <string name="no">No</string>
+    <string name="plus_10_xp">Plus 10 XP</string>
+    <string name="quick_knowledge">Quick knowledge</string>
 </resources>

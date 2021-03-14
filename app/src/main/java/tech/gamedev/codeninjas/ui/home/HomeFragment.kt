@@ -13,10 +13,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RemoteViews
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -27,6 +29,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.RequestManager
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.firestore.FirebaseFirestore
 import com.suddenh4x.ratingdialog.AppRating
 import com.suddenh4x.ratingdialog.preferences.RatingThreshold
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,10 +40,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.FeaturedItemsAdapter
+import tech.gamedev.codeninjas.data.models.QuickKnowledge
 import tech.gamedev.codeninjas.databinding.FragmentHomeBinding
 import tech.gamedev.codeninjas.other.Constants
 import tech.gamedev.codeninjas.other.Constants.INTERVIEW_QUESTIONS
 import tech.gamedev.codeninjas.ui.battle.BattleCountDownFragmentDirections
+import tech.gamedev.codeninjas.ui.dialogs.AnswerQuestionDialog
+import tech.gamedev.codeninjas.ui.dialogs.GiveUpDialog
+import tech.gamedev.codeninjas.ui.dialogs.QuestionResultListener
 import tech.gamedev.codeninjas.utils.getQuickKnowledge
 import tech.gamedev.codeninjas.utils.setToast
 import tech.gamedev.codeninjas.viewmodels.MainViewModel
@@ -48,7 +55,7 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.ItemClickedListener {
+class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.ItemClickedListener, QuestionResultListener {
 
 
     private val _mainViewModel: MainViewModel by activityViewModels()
@@ -64,7 +71,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
         subscribeToObservers()
         setupFeaturedVP()
         setupIndicator()
-
+        binding.btnQuestionOfTheDay.setOnClickListener { showQuestionOfTheDay() }
         btnGoToInterViewQuestions.setOnClickListener { navigateToQueAndAns() }
     }
 
@@ -152,5 +159,39 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
 
     }
 
+    private fun showQuestionOfTheDay() {
+        AnswerQuestionDialog(this).show(requireActivity().supportFragmentManager, "Answer Question Dialog")
+    }
 
+    override fun getQuestionResult(correct: Boolean) {
+        if (correct) {
+            binding.levelUpAnim.isVisible = true
+            binding.levelUpAnim.playAnimation()
+            lifecycleScope.launch {
+                delay(3000)
+                withContext(Dispatchers.Main) {
+                    binding.levelUpAnim.isVisible = false
+                }
+
+
+            }
+        } else {
+            Toast.makeText(requireContext(), "Wrong answer!! Please try again later.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun createCategories() {
+        val db = FirebaseFirestore.getInstance()
+        val collectionRef = db.collection("quick_knowledge").document("java").collection("categories")
+        collectionRef.document("FUNCTIONS").set(QuickKnowledge("FUNCTIONS", "cCgOESMQe44"))
+        collectionRef.document("FUNCTIONS").set(QuickKnowledge("LOOPS", "6djggrlkHY8"))
+        collectionRef.document("FUNCTIONS").set(QuickKnowledge("VARIABLES", "1mRN2MwdWUo"))
+        collectionRef.document("FUNCTIONS").set(QuickKnowledge("IF", "yvWnj_HfG6s"))
+        collectionRef.document("FUNCTIONS").set(QuickKnowledge("CLASSES", "vjjjGkXpX_I"))
+        collectionRef.document("FUNCTIONS").set(QuickKnowledge("OBJECTS", "Mm06BuD3PlY"))
+        collectionRef.document("FUNCTIONS").set(QuickKnowledge("CASTING", "H0LNjF9PSeM"))
+        collectionRef.document("FUNCTIONS").set(QuickKnowledge("THREADS", "eQk5AWcTS8w"))
+        collectionRef.document("FUNCTIONS").set(QuickKnowledge("ARRAYS", "xzjZy-dHHLw"))
+        collectionRef.document("FUNCTIONS").set(QuickKnowledge("TRY", "ceGnVDrMy1A"))
+    }
 }

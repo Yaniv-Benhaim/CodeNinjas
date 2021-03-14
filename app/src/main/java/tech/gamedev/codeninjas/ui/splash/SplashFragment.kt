@@ -86,6 +86,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
                 withContext(Dispatchers.Main) {
                     setToast("Welcome ${auth.currentUser!!.displayName}")
                     Log.e("LOGIN", "LOGIN SUCCESFULL")
+                    loginViewModel.updateFirebaseUser(auth)
                     findNavController().navigate(R.id.action_splashFragment_to_chooseWeaponFragment)
                 }
 

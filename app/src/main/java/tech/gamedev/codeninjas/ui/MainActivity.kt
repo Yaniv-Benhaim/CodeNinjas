@@ -56,7 +56,6 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        checkIfAdmin()
         FirebaseMessaging.getInstance().subscribeToTopic(Constants.NOTIFICATION_TOPIC)
 
         AppRating.Builder(this)
@@ -81,6 +80,7 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
                 R.id.discussFragment,
                 R.id.battleFragment,
                 R.id.codePlayGroundFragment -> {
+                    checkIfAdmin()
                     navView.isVisible = true
                     binding.cvToolBar.isVisible = true
                     supportActionBar?.show()
@@ -113,6 +113,7 @@ class MainActivity : AppCompatActivity(), ChangeWeaponAdapter.NewWeaponClickedLi
                 Log.d("BATTLE", question.question)
             }
         }
+
     }
 
     private fun openWeaponSelection() {

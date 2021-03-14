@@ -85,11 +85,11 @@
                 app:layout_constraintStart_toStartOf="@id/horizontal_scrollview"
                 app:layout_constraintBottom_toTopOf="@id/horizontal_scrollview"
                 android:clickable="true"
-                android:text="Quick knowledge"
+                android:text="@string/quick_knowledge"
                 android:textSize="14sp"
                 android:fontFamily="@font/ninja_lazer"
                 android:textColor="@color/orange"
-                />
+                android:focusable="true" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontal_scrollview"
@@ -103,7 +103,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:clickable="false"
                     android:orientation="horizontal">
 
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:clickable="false"
-                        android:layout_marginRight="50dp"
+                        android:layout_marginEnd="50dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -128,13 +128,13 @@
                                 android:id="@+id/btnCategory1"
                                 android:layout_width="150dp"
                                 android:layout_height="40dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginEnd="10dp"
                                 android:background="@drawable/categorie_btn_style"
                                 android:clickable="true"
                                 android:text="Coroutines"
                                 android:fontFamily="@font/ninja_lazer"
                                 android:textColor="@color/orange"
-                                />
+                                android:focusable="true" />
                             <TextView
                                 android:gravity="center"
                                 android:textAllCaps="true"
@@ -305,6 +305,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvQuestionOfTheDayTitle">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnQuestionOfTheDay"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -358,6 +359,16 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/levelUpAnim"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/level_up_anim"
+        app:lottie_loop="false"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

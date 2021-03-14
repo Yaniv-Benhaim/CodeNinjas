@@ -19,7 +19,7 @@ import javax.inject.Inject
 class LoginRepository() {
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
-    private val currentUser = FirebaseAuth.getInstance().currentUser!!.email
+    private val currentUser = auth.currentUser!!.email
     private val userCollectionRef = db.collection("users")
 
 

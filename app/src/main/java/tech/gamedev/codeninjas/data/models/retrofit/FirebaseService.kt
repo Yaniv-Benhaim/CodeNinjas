@@ -44,7 +44,7 @@ class FirebaseService : FirebaseMessagingService() {
             .setStyle(NotificationCompat.DecoratedCustomViewStyle())
             .setCustomContentView(smallRemoteView)
             .setCustomBigContentView(bigRemoteView)
-            .setSmallIcon(R.drawable.ic_ninja)
+            .setSmallIcon(R.drawable.assasin)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
             .setColor(resources.getColor(R.color.orange))
