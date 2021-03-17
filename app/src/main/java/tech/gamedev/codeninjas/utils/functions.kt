@@ -5,8 +5,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import tech.gamedev.codeninjas.data.models.BattleQuestion
-import tech.gamedev.codeninjas.data.models.User
+import tech.gamedev.codeninjas.data.models.battle.BattleQuestion
+import tech.gamedev.codeninjas.data.models.user.User
 import tech.gamedev.codeninjas.other.Constants.ASK_QUESTIONS
 import tech.gamedev.codeninjas.other.Constants.BATTLE_NINJAS
 import tech.gamedev.codeninjas.other.Constants.CPLUSPLUS

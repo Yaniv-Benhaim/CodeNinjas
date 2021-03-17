@@ -5,8 +5,8 @@ import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import tech.gamedev.codeninjas.data.models.retrofit.PushNotification
-import tech.gamedev.codeninjas.data.models.retrofit.RetrofitInstance
+import tech.gamedev.codeninjas.data.retrofit.PushNotification
+import tech.gamedev.codeninjas.data.retrofit.RetrofitInstance
 import tech.gamedev.codeninjas.other.Constants.NOTIFICATION_TAG
 
 class NotificationRepo {

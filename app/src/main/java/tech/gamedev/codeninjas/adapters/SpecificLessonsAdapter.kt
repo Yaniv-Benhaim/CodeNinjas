@@ -1,21 +1,16 @@
 package tech.gamedev.codeninjas.adapters
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.RequestManager
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter
 import com.firebase.ui.firestore.paging.FirestorePagingOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import kotlinx.android.synthetic.main.item_lesson_only.view.*
-import kotlinx.android.synthetic.main.item_lesson_only.view.btnContinueToQuestion
-import kotlinx.android.synthetic.main.item_lesson_only.view.ivLessonCodeExample
 import kotlinx.android.synthetic.main.item_lesson_only.view.tvLessonContent
 import kotlinx.android.synthetic.main.item_lesson_only.view.tvLessonContent2
 import kotlinx.android.synthetic.main.item_lesson_only.view.tvLessonDetailTitle
@@ -32,7 +27,7 @@ import kotlinx.android.synthetic.main.item_question_only.view.tvBtnAnswerD
 import kotlinx.android.synthetic.main.item_question_only.view.tvLessonQuestion
 import kotlinx.coroutines.*
 import tech.gamedev.codeninjas.R
-import tech.gamedev.codeninjas.data.models.LessonAndQuestion
+import tech.gamedev.codeninjas.data.models.lessons.LessonAndQuestion
 import tech.gamedev.codeninjas.utils.getFirstText
 import tech.gamedev.codeninjas.utils.getSecondText
 import tech.gamedev.codeninjas.utils.loadImageUrl

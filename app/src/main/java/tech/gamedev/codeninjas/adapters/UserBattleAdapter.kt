@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import kotlinx.android.synthetic.main.item_user.view.*
 import tech.gamedev.codeninjas.R
-import tech.gamedev.codeninjas.data.models.User
+import tech.gamedev.codeninjas.data.models.user.User
 
 class UserBattleAdapter(val users: List<User>, val glide: RequestManager) : RecyclerView.Adapter<UserBattleAdapter.BattleViewHolder>() {
 

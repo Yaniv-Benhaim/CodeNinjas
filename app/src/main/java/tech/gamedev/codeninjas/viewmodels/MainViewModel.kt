@@ -1,12 +1,11 @@
 package tech.gamedev.codeninjas.viewmodels
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import tech.gamedev.codeninjas.data.models.BattleQuestion
-import tech.gamedev.codeninjas.data.models.User
+import tech.gamedev.codeninjas.data.models.battle.BattleQuestion
+import tech.gamedev.codeninjas.data.models.user.User
 import tech.gamedev.codeninjas.repo.BattleRepo
 import javax.inject.Inject
 

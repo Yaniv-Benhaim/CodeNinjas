@@ -1,7 +1,7 @@
 package tech.gamedev.codeninjas.utils
 
 import android.widget.TextView
-import tech.gamedev.codeninjas.data.models.LessonAndQuestion
+import tech.gamedev.codeninjas.data.models.lessons.LessonAndQuestion
 
 fun TextView.getFirstText(model: LessonAndQuestion) {
     this.text = model.lessonContent.split("<img>")[0].replace("_n", "\n")

@@ -1,25 +1,19 @@
 package tech.gamedev.codeninjas.ui.learn
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.firebase.ui.firestore.paging.FirestorePagingOptions
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_learn.*
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.LessonsAdapter
-import tech.gamedev.codeninjas.data.models.LessonCollectionLink
+import tech.gamedev.codeninjas.data.models.lessons.LessonCollectionLink
 import tech.gamedev.codeninjas.databinding.FragmentLearnBinding
-import javax.inject.Inject
 
 
 @AndroidEntryPoint

@@ -1,7 +1,6 @@
 package tech.gamedev.codeninjas.ui.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,9 +8,8 @@ import android.view.View;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import tech.gamedev.codeninjas.R;
-import tech.gamedev.codeninjas.data.models.retrofit.NotificationModel;
-import tech.gamedev.codeninjas.data.models.retrofit.PushNotification;
+import tech.gamedev.codeninjas.data.retrofit.NotificationModel;
+import tech.gamedev.codeninjas.data.retrofit.PushNotification;
 import tech.gamedev.codeninjas.databinding.ActivityAdminBinding;
 import tech.gamedev.codeninjas.other.Constants;
 import tech.gamedev.codeninjas.repo.NotificationRepo;

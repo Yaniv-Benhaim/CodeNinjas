@@ -5,16 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.toObject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import tech.gamedev.codeninjas.data.models.User
+import tech.gamedev.codeninjas.data.models.user.User
 import tech.gamedev.codeninjas.other.Constants.LEVEL_ONE
 import tech.gamedev.codeninjas.other.Constants.LOGIN_TAG
-import javax.inject.Inject
 
 class LoginRepository() {
     private val db = FirebaseFirestore.getInstance()

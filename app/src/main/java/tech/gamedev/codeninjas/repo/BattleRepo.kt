@@ -10,8 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import tech.gamedev.codeninjas.data.models.BattleQuestion
-import tech.gamedev.codeninjas.data.models.User
+import tech.gamedev.codeninjas.data.models.battle.BattleQuestion
+import tech.gamedev.codeninjas.data.models.user.User
 import javax.inject.Inject
 
 class BattleRepo @Inject constructor() {

@@ -7,7 +7,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.firebase.ui.firestore.paging.FirestorePagingOptions
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,11 +15,10 @@ import dagger.hilt.components.SingletonComponent
 
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.FeaturedItemsAdapter
-import tech.gamedev.codeninjas.data.models.LessonCollectionLink
-import tech.gamedev.codeninjas.repo.CreateNewLessonsRepo
-import tech.gamedev.codeninjas.repo.LessonRepository
-import tech.gamedev.codeninjas.repo.LoginRepository
-import tech.gamedev.codeninjas.repo.NotificationRepo
+import tech.gamedev.codeninjas.adapters.PostAdapter
+import tech.gamedev.codeninjas.data.models.lessons.LessonAndQuestion
+import tech.gamedev.codeninjas.data.models.posts.Post
+import tech.gamedev.codeninjas.repo.*
 import javax.inject.Singleton
 
 @Module
@@ -63,4 +61,29 @@ object AppModule {
     @Singleton
     @Provides
     fun provideNotificationRepo() = NotificationRepo()
+
+    @Singleton
+    @Provides
+    fun providePostRepo() = PostRepo()
+
+    @Singleton
+    @Provides
+    fun providePostOptions(db: FirebaseFirestore): FirestorePagingOptions<Post> {
+        val query = db
+            .collection("posts")
+
+
+        val config = PagedList.Config.Builder()
+            .setInitialLoadSizeHint(10)
+            .setPageSize(10)
+            .build()
+
+        return FirestorePagingOptions.Builder<Post>()
+            .setQuery(query, config, Post::class.java)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun providePostAdapter(options: FirestorePagingOptions<Post>) = PostAdapter(options)
 }

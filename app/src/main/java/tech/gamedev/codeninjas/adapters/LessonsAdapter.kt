@@ -7,14 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter
 import com.firebase.ui.firestore.paging.FirestorePagingOptions
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.android.synthetic.main.item_lesson.view.*
 import tech.gamedev.codeninjas.R
-import tech.gamedev.codeninjas.data.models.LessonAndQuestion
-import tech.gamedev.codeninjas.data.models.LessonCollectionLink
+import tech.gamedev.codeninjas.data.models.lessons.LessonCollectionLink
 
 class LessonsAdapter(options: FirestorePagingOptions<LessonCollectionLink>) :
     FirestorePagingAdapter<LessonCollectionLink, LessonsAdapter.LessonViewHolder>(options)

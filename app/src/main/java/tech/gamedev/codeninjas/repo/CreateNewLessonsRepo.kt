@@ -4,9 +4,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import tech.gamedev.codeninjas.data.models.LessonAndQuestion
-import tech.gamedev.codeninjas.data.models.LessonCollectionLink
+import tech.gamedev.codeninjas.data.models.lessons.LessonAndQuestion
+import tech.gamedev.codeninjas.data.models.lessons.LessonCollectionLink
 import tech.gamedev.codeninjas.data.models.lessonextensions.Lesson
 import tech.gamedev.codeninjas.data.models.lessonextensions.Question
 

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_adminFragment"
             app:destination="@id/adminFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_quickKnowledgeDetailFragment"
+            app:destination="@id/quickKnowledgeDetailFragment" />
     </fragment>
 
     <fragment
@@ -29,7 +32,11 @@
         android:id="@+id/discussFragment"
         android:name="tech.gamedev.codeninjas.ui.discuss.DiscussFragment"
         android:label="@string/discuss"
-        tools:layout="@layout/fragment_discuss" />
+        tools:layout="@layout/fragment_discuss" >
+        <action
+            android:id="@+id/action_discussFragment_to_createNewPostFragment"
+            app:destination="@id/createNewPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="tech.gamedev.codeninjas.ui.splash.SplashFragment"
@@ -88,7 +95,7 @@
         tools:layout="@layout/fragment_lesson_detail" >
         <argument
             android:name="lesson"
-            app:argType="tech.gamedev.codeninjas.data.models.LessonCollectionLink" />
+            app:argType="tech.gamedev.codeninjas.data.models.lessons.LessonCollectionLink" />
         <action
             android:id="@+id/action_lessonDetailFragment_to_questionDetailFragment"
             app:destination="@id/questionDetailFragment" />
@@ -100,7 +107,7 @@
         tools:layout="@layout/fragment_question_detail" >
         <argument
             android:name="question"
-            app:argType="tech.gamedev.codeninjas.data.models.LessonAndQuestion" />
+            app:argType="tech.gamedev.codeninjas.data.models.lessons.LessonAndQuestion" />
     </fragment>
     <fragment
         android:id="@+id/battleCountDownFragment"
@@ -109,10 +116,10 @@
         tools:layout="@layout/fragment_battle_count_down" >
         <argument
             android:name="user1"
-            app:argType="tech.gamedev.codeninjas.data.models.User" />
+            app:argType="tech.gamedev.codeninjas.data.models.user.User" />
         <argument
             android:name="opponent"
-            app:argType="tech.gamedev.codeninjas.data.models.User" />
+            app:argType="tech.gamedev.codeninjas.data.models.user.User" />
         <action
             android:id="@+id/action_battleCountDownFragment_to_battleStartedFragment"
             app:destination="@id/battleStartedFragment" />
@@ -124,9 +131,9 @@
         tools:layout="@layout/fragment_battle_started" >
         <argument
             android:name="user"
-            app:argType="tech.gamedev.codeninjas.data.models.User" />
+            app:argType="tech.gamedev.codeninjas.data.models.user.User" />
         <argument android:name="opponent"
-            app:argType="tech.gamedev.codeninjas.data.models.User" />
+            app:argType="tech.gamedev.codeninjas.data.models.user.User" />
         <action
             android:id="@+id/action_battleStartedFragment_to_finishedBattleFragment"
             app:destination="@id/finishedBattleFragment" />
@@ -157,10 +164,10 @@
             app:argType="integer" />
         <argument
             android:name="user"
-            app:argType="tech.gamedev.codeninjas.data.models.User" />
+            app:argType="tech.gamedev.codeninjas.data.models.user.User" />
         <argument
             android:name="opponent"
-            app:argType="tech.gamedev.codeninjas.data.models.User" />
+            app:argType="tech.gamedev.codeninjas.data.models.user.User" />
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -175,4 +182,16 @@
         android:id="@+id/adminFragment"
         android:name="tech.gamedev.codeninjas.ui.admin.AdminFragment"
         android:label="AdminFragment" />
+    <fragment
+        android:id="@+id/quickKnowledgeDetailFragment"
+        android:name="tech.gamedev.codeninjas.ui.detailscreens.QuickKnowledgeDetailFragment"
+        android:label="fragment_quick_knowledge_detail"
+        tools:layout="@layout/fragment_quick_knowledge_detail" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/createNewPostFragment"
+        android:name="tech.gamedev.codeninjas.ui.detailscreens.CreateNewPostFragment"
+        android:label="fragment_create_new_post"
+        tools:layout="@layout/fragment_create_new_post" />
 </navigation>

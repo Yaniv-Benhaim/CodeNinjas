@@ -45,4 +45,11 @@
     <string name="no">No</string>
     <string name="plus_10_xp">Plus 10 XP</string>
     <string name="quick_knowledge">Quick knowledge</string>
+    <string name="share">Share</string>
+    <string name="comment">Comment</string>
+    <string name="like">Like</string>
+    <string name="create_new_post">Create new post</string>
+    <string name="body">Body...</string>
+    <string name="create_post">create post</string>
+    <string name="choose_image">Choose image</string>
 </resources>

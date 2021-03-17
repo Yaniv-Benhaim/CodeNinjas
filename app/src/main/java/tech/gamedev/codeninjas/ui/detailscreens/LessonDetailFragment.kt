@@ -6,21 +6,14 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
-import androidx.paging.PagedList
-import com.bumptech.glide.RequestManager
-import com.firebase.ui.firestore.paging.FirestorePagingOptions
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_splash.*
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.SpecificLessonsAdapter
-import tech.gamedev.codeninjas.data.models.LessonAndQuestion
 import tech.gamedev.codeninjas.databinding.FragmentLessonDetailBinding
 import tech.gamedev.codeninjas.ui.learn.LearnViewModel
-import tech.gamedev.codeninjas.viewmodels.MainViewModel
 import java.util.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LessonDetailFragment : Fragment(R.layout.fragment_lesson_detail), SpecificLessonsAdapter.BtnContinueClickedListener {

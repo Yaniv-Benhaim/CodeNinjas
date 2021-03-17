@@ -1,4 +1,4 @@
-package tech.gamedev.codeninjas.data.models
+package tech.gamedev.codeninjas.data.models.lessons
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

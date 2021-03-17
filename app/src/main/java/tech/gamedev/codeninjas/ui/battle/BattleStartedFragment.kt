@@ -12,7 +12,7 @@ import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_battle_started.*
 import tech.gamedev.codeninjas.R
-import tech.gamedev.codeninjas.data.models.BattleQuestion
+import tech.gamedev.codeninjas.data.models.battle.BattleQuestion
 import tech.gamedev.codeninjas.databinding.FragmentBattleStartedBinding
 import tech.gamedev.codeninjas.ui.dialogs.GiveUpDialog
 import tech.gamedev.codeninjas.viewmodels.MainViewModel

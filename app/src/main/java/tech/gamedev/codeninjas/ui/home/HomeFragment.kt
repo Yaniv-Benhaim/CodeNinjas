@@ -1,33 +1,18 @@
 package tech.gamedev.codeninjas.ui.home
 
 import android.annotation.SuppressLint
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.RemoteViews
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.RequestManager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.firestore.FirebaseFirestore
 import com.suddenh4x.ratingdialog.AppRating
@@ -40,16 +25,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.FeaturedItemsAdapter
-import tech.gamedev.codeninjas.data.models.QuickKnowledge
+import tech.gamedev.codeninjas.data.models.categories.QuickKnowledge
 import tech.gamedev.codeninjas.databinding.FragmentHomeBinding
-import tech.gamedev.codeninjas.other.Constants
 import tech.gamedev.codeninjas.other.Constants.INTERVIEW_QUESTIONS
-import tech.gamedev.codeninjas.ui.battle.BattleCountDownFragmentDirections
 import tech.gamedev.codeninjas.ui.dialogs.AnswerQuestionDialog
-import tech.gamedev.codeninjas.ui.dialogs.GiveUpDialog
 import tech.gamedev.codeninjas.ui.dialogs.QuestionResultListener
 import tech.gamedev.codeninjas.utils.getQuickKnowledge
-import tech.gamedev.codeninjas.utils.setToast
 import tech.gamedev.codeninjas.viewmodels.MainViewModel
 import java.util.*
 import javax.inject.Inject
@@ -59,6 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
 
 
     private val _mainViewModel: MainViewModel by activityViewModels()
+    private val homeViewModel by activityViewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
     @Inject
     lateinit var featuredAdapter: FeaturedItemsAdapter
@@ -73,6 +55,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
         setupIndicator()
         binding.btnQuestionOfTheDay.setOnClickListener { showQuestionOfTheDay() }
         btnGoToInterViewQuestions.setOnClickListener { navigateToQueAndAns() }
+        /*createCategories()*/
     }
 
     @SuppressLint("SetTextI18n")
@@ -157,6 +140,50 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
         binding.btnCategory9.text = getQuickKnowledge(subject)[8]
         binding.btnCategory10.text = getQuickKnowledge(subject)[9]
 
+        binding.btnCategory1.setOnClickListener {
+            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!.toLowerCase(Locale.ROOT),
+                btnCategory1.text.toString().toUpperCase().trim())
+
+            Log.d("QUICK", "language: ${_mainViewModel.weapon.value!!} topic: ${btnCategory1.text.toString().trim().toUpperCase()} ")
+            findNavController().navigate(R.id.action_homeFragment_to_quickKnowledgeDetailFragment)
+        }
+        binding.btnCategory2.setOnClickListener {
+            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
+
+        }
+        binding.btnCategory3.setOnClickListener {
+            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
+
+        }
+        binding.btnCategory4.setOnClickListener {
+            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
+
+        }
+        binding.btnCategory5.setOnClickListener {
+            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
+
+        }
+        binding.btnCategory6.setOnClickListener {
+            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
+
+        }
+        binding.btnCategory7.setOnClickListener {
+            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
+
+        }
+        binding.btnCategory8.setOnClickListener {
+            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
+
+        }
+        binding.btnCategory9.setOnClickListener {
+            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
+
+        }
+        binding.btnCategory10.setOnClickListener {
+            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
+
+        }
+
     }
 
     private fun showQuestionOfTheDay() {
@@ -184,14 +211,14 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
         val db = FirebaseFirestore.getInstance()
         val collectionRef = db.collection("quick_knowledge").document("java").collection("categories")
         collectionRef.document("FUNCTIONS").set(QuickKnowledge("FUNCTIONS", "cCgOESMQe44"))
-        collectionRef.document("FUNCTIONS").set(QuickKnowledge("LOOPS", "6djggrlkHY8"))
-        collectionRef.document("FUNCTIONS").set(QuickKnowledge("VARIABLES", "1mRN2MwdWUo"))
-        collectionRef.document("FUNCTIONS").set(QuickKnowledge("IF", "yvWnj_HfG6s"))
-        collectionRef.document("FUNCTIONS").set(QuickKnowledge("CLASSES", "vjjjGkXpX_I"))
-        collectionRef.document("FUNCTIONS").set(QuickKnowledge("OBJECTS", "Mm06BuD3PlY"))
-        collectionRef.document("FUNCTIONS").set(QuickKnowledge("CASTING", "H0LNjF9PSeM"))
-        collectionRef.document("FUNCTIONS").set(QuickKnowledge("THREADS", "eQk5AWcTS8w"))
-        collectionRef.document("FUNCTIONS").set(QuickKnowledge("ARRAYS", "xzjZy-dHHLw"))
-        collectionRef.document("FUNCTIONS").set(QuickKnowledge("TRY", "ceGnVDrMy1A"))
+        collectionRef.document("LOOPS").set(QuickKnowledge("LOOPS", "6djggrlkHY8"))
+        collectionRef.document("VARIABLES").set(QuickKnowledge("VARIABLES", "1mRN2MwdWUo"))
+        collectionRef.document("IF").set(QuickKnowledge("IF", "yvWnj_HfG6s"))
+        collectionRef.document("CLASSES").set(QuickKnowledge("CLASSES", "vjjjGkXpX_I"))
+        collectionRef.document("OBJECTS").set(QuickKnowledge("OBJECTS", "Mm06BuD3PlY"))
+        collectionRef.document("CASTING").set(QuickKnowledge("CASTING", "H0LNjF9PSeM"))
+        collectionRef.document("THREADS").set(QuickKnowledge("THREADS", "eQk5AWcTS8w"))
+        collectionRef.document("ARRAYS").set(QuickKnowledge("ARRAYS", "xzjZy-dHHLw"))
+        collectionRef.document("TRY").set(QuickKnowledge("TRY", "ceGnVDrMy1A"))
     }
 }

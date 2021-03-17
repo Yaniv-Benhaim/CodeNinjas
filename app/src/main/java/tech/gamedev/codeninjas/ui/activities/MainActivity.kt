@@ -1,4 +1,4 @@
-package tech.gamedev.codeninjas.ui
+package tech.gamedev.codeninjas.ui.activities
 
 import android.os.Bundle
 import android.util.Log

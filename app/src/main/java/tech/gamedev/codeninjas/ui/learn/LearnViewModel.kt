@@ -9,8 +9,8 @@ import com.firebase.ui.firestore.paging.FirestorePagingOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import dagger.hilt.android.lifecycle.HiltViewModel
-import tech.gamedev.codeninjas.data.models.LessonAndQuestion
-import tech.gamedev.codeninjas.data.models.LessonCollectionLink
+import tech.gamedev.codeninjas.data.models.lessons.LessonAndQuestion
+import tech.gamedev.codeninjas.data.models.lessons.LessonCollectionLink
 import tech.gamedev.codeninjas.repo.CreateNewLessonsRepo
 import tech.gamedev.codeninjas.repo.LessonRepository
 import javax.inject.Inject

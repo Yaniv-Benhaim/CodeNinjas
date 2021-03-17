@@ -9,8 +9,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import tech.gamedev.codeninjas.data.models.LessonAndQuestion
-import tech.gamedev.codeninjas.data.models.LessonCollectionLink
+import tech.gamedev.codeninjas.data.models.lessons.LessonAndQuestion
+import tech.gamedev.codeninjas.data.models.lessons.LessonCollectionLink
+import tech.gamedev.codeninjas.data.models.categories.QuickKnowledge
 import tech.gamedev.codeninjas.other.Constants.CPLUSPLUS
 import tech.gamedev.codeninjas.other.Constants.JAVA
 import tech.gamedev.codeninjas.other.Constants.JAVASCRIPT
@@ -34,6 +35,12 @@ class LessonRepository {
     private val lessonCountRefSwift = fireStoreCollectionRef.collection("lessons").document("swift").collection("lessons")
     private val lessonCountRefJavascript = fireStoreCollectionRef.collection("lessons").document("javascript").collection("lessons")
     private val lessonCountRefCplusplus = fireStoreCollectionRef.collection("lessons").document("cplusplus").collection("lessons")
+
+    private val javaQuickKnowledgeRef = fireStoreCollectionRef.collection("quick_knowledge").document(JAVA.toLowerCase(Locale.ROOT)).collection("categories")
+    private val kotlinQuickKnowledgeRef = fireStoreCollectionRef.collection("quick_knowledge").document(KOTLIN.toLowerCase(Locale.ROOT)).collection("categories")
+    private val javascriptQuickKnowledgeRef = fireStoreCollectionRef.collection("quick_knowledge").document(JAVASCRIPT.toLowerCase(Locale.ROOT)).collection("categories")
+    private val swiftQuickKnowledgeRef = fireStoreCollectionRef.collection("quick_knowledge").document(SWIFT.toLowerCase(Locale.ROOT)).collection("categories")
+    private val cplusplusQuickKnowledgeRef = fireStoreCollectionRef.collection("quick_knowledge").document(CPLUSPLUS.toLowerCase(Locale.ROOT)).collection("categories")
 
     private val _userProgress = MutableLiveData<Int>()
     val userProgress: LiveData<Int> = _userProgress
@@ -236,6 +243,22 @@ class LessonRepository {
         for (document in specificLessons) {
             val lesson = document.toObject<LessonAndQuestion>()
             _specificLessons.value!!.add(lesson)
+        }
+    }
+
+    suspend fun getQuickKnowledge(language: String, topic: String): QuickKnowledge? {
+        return when(language) {
+            KOTLIN -> kotlinQuickKnowledgeRef.document(topic.toUpperCase()).get().await().toObject(
+                QuickKnowledge::class.java)
+            JAVA -> javaQuickKnowledgeRef.document(topic.toUpperCase()).get().await().toObject(
+                QuickKnowledge::class.java)
+            CPLUSPLUS -> cplusplusQuickKnowledgeRef.document(topic.toUpperCase()).get().await().toObject(
+                QuickKnowledge::class.java)
+            JAVASCRIPT -> javascriptQuickKnowledgeRef.document(topic.toUpperCase()).get().await().toObject(
+                QuickKnowledge::class.java)
+            SWIFT -> swiftQuickKnowledgeRef.document(topic.toUpperCase()).get().await().toObject(
+                QuickKnowledge::class.java)
+            else -> null
         }
     }
 }

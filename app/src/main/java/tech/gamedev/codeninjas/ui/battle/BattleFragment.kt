@@ -115,7 +115,7 @@ class BattleFragment : Fragment(R.layout.fragment_battle), UserBattleAdapter.OnU
                 rotationXBy(360f)
             }.withEndAction {
                 mainViewModel.getJavaQuestions()
-                val action = BattleFragmentDirections.actionBattleFragmentToBattleCountDownFragment(loginViewModel.user.value!!,user)
+               val action = BattleFragmentDirections.actionBattleFragmentToBattleCountDownFragment(loginViewModel.user.value!!,user)
                 findNavController().navigate(action)
             }
         }

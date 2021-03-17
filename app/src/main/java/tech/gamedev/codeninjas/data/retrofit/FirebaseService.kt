@@ -1,4 +1,4 @@
-package tech.gamedev.codeninjas.data.models.retrofit
+package tech.gamedev.codeninjas.data.retrofit
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -15,7 +15,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import tech.gamedev.codeninjas.R
-import tech.gamedev.codeninjas.ui.MainActivity
+import tech.gamedev.codeninjas.ui.activities.MainActivity
 import kotlin.random.Random
 
 private const val CHANNEL_ID = "GLOBAL_NOTIFICATIONS"

@@ -1,4 +1,4 @@
-package tech.gamedev.codeninjas.data.models
+package tech.gamedev.codeninjas.data.models.battle
 
 data class BattleQuestion(
         val question: String = "",
