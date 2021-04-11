@@ -45,6 +45,18 @@ object Constants {
     const val NOTIFICATION_TOPIC = "/topics/myTopic"
     //CATEGORIES
 
+    const val FUNCTIONS = "FUNCTIONS"
+    const val LOOPS = "LOOPS"
+    const val VARIABLES = "VARIABLES"
+    const val IF = "IF"
+    const val CLASSES = "CLASSES"
+    const val OBJECTS = "OBJECTS"
+    const val CASTING = "CASTING"
+    const val THREADS = "THREADS"
+    const val ARRAYS = "ARRAYS"
+    const val TRY = "TRY"
+
+
 
 
 

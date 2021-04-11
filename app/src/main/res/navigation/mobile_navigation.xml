@@ -188,6 +188,9 @@
         android:label="fragment_quick_knowledge_detail"
         tools:layout="@layout/fragment_quick_knowledge_detail" >
 
+        <argument
+            android:name="videoUrl"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/createNewPostFragment"

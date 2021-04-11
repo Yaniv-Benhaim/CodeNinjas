@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -26,6 +27,7 @@ import kotlinx.coroutines.withContext
 import tech.gamedev.codeninjas.R
 import tech.gamedev.codeninjas.adapters.FeaturedItemsAdapter
 import tech.gamedev.codeninjas.data.models.categories.QuickKnowledge
+import tech.gamedev.codeninjas.data.quickvids.QuickVids
 import tech.gamedev.codeninjas.databinding.FragmentHomeBinding
 import tech.gamedev.codeninjas.other.Constants.INTERVIEW_QUESTIONS
 import tech.gamedev.codeninjas.ui.dialogs.AnswerQuestionDialog
@@ -141,47 +143,44 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
         binding.btnCategory10.text = getQuickKnowledge(subject)[9]
 
         binding.btnCategory1.setOnClickListener {
-            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!.toLowerCase(Locale.ROOT),
-                btnCategory1.text.toString().toUpperCase().trim())
-
-            Log.d("QUICK", "language: ${_mainViewModel.weapon.value!!} topic: ${btnCategory1.text.toString().trim().toUpperCase()} ")
-            findNavController().navigate(R.id.action_homeFragment_to_quickKnowledgeDetailFragment)
+            val action = HomeFragmentDirections.actionHomeFragmentToQuickKnowledgeDetailFragment(QuickVids.getJavaVids(binding.btnCategory1.text.toString().toUpperCase(Locale.ROOT).trim()))
+            findNavController().navigate(action)
         }
         binding.btnCategory2.setOnClickListener {
-            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
-
+            val action = HomeFragmentDirections.actionHomeFragmentToQuickKnowledgeDetailFragment(QuickVids.getJavaVids(binding.btnCategory2.text.toString().toUpperCase(Locale.ROOT).trim()))
+            findNavController().navigate(action)
         }
         binding.btnCategory3.setOnClickListener {
-            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
-
+            val action = HomeFragmentDirections.actionHomeFragmentToQuickKnowledgeDetailFragment(QuickVids.getJavaVids(binding.btnCategory3.text.toString().toUpperCase(Locale.ROOT).trim()))
+            findNavController().navigate(action)
         }
         binding.btnCategory4.setOnClickListener {
-            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
-
+            val action = HomeFragmentDirections.actionHomeFragmentToQuickKnowledgeDetailFragment(QuickVids.getJavaVids(binding.btnCategory4.text.toString().toUpperCase(Locale.ROOT).trim()))
+            findNavController().navigate(action)
         }
         binding.btnCategory5.setOnClickListener {
-            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
-
+            val action = HomeFragmentDirections.actionHomeFragmentToQuickKnowledgeDetailFragment(QuickVids.getJavaVids(binding.btnCategory5.text.toString().toUpperCase(Locale.ROOT).trim()))
+            findNavController().navigate(action)
         }
         binding.btnCategory6.setOnClickListener {
-            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
-
+            val action = HomeFragmentDirections.actionHomeFragmentToQuickKnowledgeDetailFragment(QuickVids.getJavaVids(binding.btnCategory6.text.toString().toUpperCase(Locale.ROOT).trim()))
+            findNavController().navigate(action)
         }
         binding.btnCategory7.setOnClickListener {
-            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
-
+            val action = HomeFragmentDirections.actionHomeFragmentToQuickKnowledgeDetailFragment(QuickVids.getJavaVids(binding.btnCategory7.text.toString().toUpperCase(Locale.ROOT).trim()))
+            findNavController().navigate(action)
         }
         binding.btnCategory8.setOnClickListener {
-            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
-
+            val action = HomeFragmentDirections.actionHomeFragmentToQuickKnowledgeDetailFragment(QuickVids.getJavaVids(binding.btnCategory8.text.toString().toUpperCase(Locale.ROOT).trim()))
+            findNavController().navigate(action)
         }
         binding.btnCategory9.setOnClickListener {
-            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
-
+            val action = HomeFragmentDirections.actionHomeFragmentToQuickKnowledgeDetailFragment(QuickVids.getJavaVids(binding.btnCategory9.text.toString().toUpperCase(Locale.ROOT).trim()))
+            findNavController().navigate(action)
         }
         binding.btnCategory10.setOnClickListener {
-            homeViewModel.getQuickKnowledgeVideo(_mainViewModel.weapon.value!!, btnCategory1.text.toString())
-
+            val action = HomeFragmentDirections.actionHomeFragmentToQuickKnowledgeDetailFragment(QuickVids.getJavaVids(binding.btnCategory10.text.toString().toUpperCase(Locale.ROOT).trim()))
+            findNavController().navigate(action)
         }
 
     }
@@ -221,4 +220,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), FeaturedItemsAdapter.Item
         collectionRef.document("ARRAYS").set(QuickKnowledge("ARRAYS", "xzjZy-dHHLw"))
         collectionRef.document("TRY").set(QuickKnowledge("TRY", "ceGnVDrMy1A"))
     }
+
+
 }
