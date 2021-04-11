@@ -28,7 +28,7 @@ class LearnViewModel @Inject constructor(private val db: FirebaseFirestore, priv
     val userProgress = lessonRepository.userProgress
     private fun getUserProgress(subject: String) = lessonRepository.getUserProgress(subject)
     private fun getAmountOfLessons(subject: String) = lessonRepository.getAmountOfLessons(subject)
-    fun createNewLesson() = repoNewLesson.addNewLesson()
+//    fun createNewLesson() = repoNewLesson.addNewLesson()
 
     fun setWeapon(weapon: String) {
         _weapon.value = weapon
@@ -55,8 +55,8 @@ class LearnViewModel @Inject constructor(private val db: FirebaseFirestore, priv
         _currentProgressInSteps.value = 1
     }
 
-    fun getLessons() = lessonRepository.getLessons(subject.value!!)
-    fun getSpecificLessons(lessonCollection: LessonCollectionLink) = lessonRepository.getSpecificLessonList(subject.value!!, lessonCollection)
+//    fun getLessons() = lessonRepository.getLessons(subject.value!!)
+//    fun getSpecificLessons(lessonCollection: LessonCollectionLink) = lessonRepository.getSpecificLessonList(subject.value!!, lessonCollection)
 
     fun provideUpdatedOptions(subject: String): FirestorePagingOptions.Builder<LessonCollectionLink> {
         val query = db.collection("lessons").document(subject).collection("modules").orderBy("lesson_id", Query.Direction.ASCENDING)
